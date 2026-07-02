@@ -1,0 +1,3197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI-Solutions - Premier artificial intelligence consultancy delivering enterprise-grade AI services across the UK">
+  <meta name="theme-color" content="#042C53">
+  <title>AI-Solutions | Intelligent AI Services for Enterprise</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23042C53' width='100' height='100' rx='20'/><text x='50' y='68' font-size='50' text-anchor='middle' fill='white' font-family='system-ui'>AI</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --navy: #042C53;
+      --blue: #185FA5;
+      --teal: #1D9E75;
+      --green: #639922;
+      --white: #FFFFFF;
+      --grey: #f4f6f9;
+      --grey-dark: #e5e7eb;
+      --text: #1a1a2e;
+      --text-muted: #6b7280;
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+      --radius: 8px;
+      --radius-lg: 12px;
+      --transition: 200ms ease-out;
+      --font-heading: 'Syne', system-ui, sans-serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text); line-height: 1.6; background: var(--white); overflow-x: hidden; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    input, textarea, select { font-family: inherit; font-size: 1rem; }
+    ul { list-style: none; }
+
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+    /* Typography */
+    h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 800; line-height: 1.2; }
+    h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); }
+    h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
+    h4 { font-size: 1.125rem; }
+    p { color: var(--text-muted); }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; border-radius: var(--radius); font-weight: 600; font-size: 1rem; transition: all var(--transition); }
+    .btn-primary { background: var(--navy); color: var(--white); }
+    .btn-primary:hover { background: #031a3a; transform: translateY(-2px); }
+    .btn-secondary { background: var(--white); color: var(--navy); border: 2px solid var(--navy); }
+    .btn-secondary:hover { background: var(--navy); color: var(--white); }
+    .btn-blue { background: var(--blue); color: var(--white); }
+    .btn-blue:hover { background: #144c8a; }
+    .btn-teal { background: var(--teal); color: var(--white); }
+    .btn-teal:hover { background: #178461; }
+    .btn-sm { padding: 10px 20px; font-size: 0.875rem; }
+    .btn:active { transform: scale(0.98); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Header */
+    .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--grey-dark); transition: all var(--transition); }
+    .header.scrolled { box-shadow: var(--shadow); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; max-width: 1280px; margin: 0 auto; }
+    .logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-heading); font-weight: 800; font-size: 1.5rem; color: var(--navy); }
+    .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--navy), var(--blue)); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; }
+    .logo-icon svg { width: 24px; height: 24px; }
+    .nav { display: flex; align-items: center; gap: 32px; }
+    .nav-link { font-weight: 500; color: var(--text); transition: color var(--transition); position: relative; }
+    .nav-link:hover, .nav-link.active { color: var(--blue); }
+    .nav-link.active::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: var(--blue); border-radius: 2px; }
+    .header-cta { display: flex; align-items: center; gap: 16px; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--navy); transition: all var(--transition); }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* Mobile Menu */
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--white); z-index: 999; padding: 100px 24px 40px; flex-direction: column; gap: 24px; }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a { font-size: 1.5rem; font-weight: 600; padding: 12px 0; border-bottom: 1px solid var(--grey-dark); }
+
+    /* Pages */
+    .page { display: none; min-height: 100vh; padding-top: 80px; }
+    .page.active { display: block; }
+
+    /* Hero */
+    .hero { position: relative; min-height: calc(100vh - 80px); display: flex; align-items: center; margin-top: -80px; padding-top: 80px; }
+    .hero-bg { position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&auto=format&fit=crop'); background-size: cover; background-position: center; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(4,44,83,0.9) 0%, rgba(24,95,165,0.85) 100%); }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 120px 24px; }
+    .hero h1 { color: var(--white); margin-bottom: 24px; }
+    .hero-subtitle { color: rgba(255,255,255,0.9); font-size: 1.25rem; margin-bottom: 40px; line-height: 1.8; }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-stats { display: flex; gap: 48px; margin-top: 64px; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat-value { font-family: var(--font-heading); font-size: 3rem; font-weight: 800; color: var(--white); }
+    .stat-label { color: rgba(255,255,255,0.8); font-size: 0.875rem; margin-top: 4px; }
+    .stat-icon { width: 48px; height: 48px; margin: 0 auto 12px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+    /* Section Styles */
+    .section { padding: 80px 0; }
+    .section-grey { background: var(--grey); }
+    .section-header { text-align: center; max-width: 700px; margin: 0 auto 48px; }
+    .section-header h2 { margin-bottom: 16px; color: var(--navy); }
+    .section-header p { font-size: 1.125rem; }
+
+    /* What We Do */
+    .what-we-do { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .wwd-card { text-align: center; padding: 40px 24px; }
+    .wwd-icon { width: 64px; height: 64px; margin: 0 auto 20px; background: linear-gradient(135deg, var(--blue), var(--teal)); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; }
+    .wwd-icon svg { width: 32px; height: 32px; stroke: var(--white); }
+    .wwd-card h3 { color: var(--navy); margin-bottom: 12px; }
+
+    /* Services Grid */
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .service-card { background: var(--white); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow); transition: all var(--transition); cursor: pointer; }
+    .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .service-icon { width: 56px; height: 56px; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .service-icon svg { width: 28px; height: 28px; stroke: var(--white); stroke-width: 2; }
+    .service-card h3 { color: var(--navy); margin-bottom: 8px; }
+    .service-card p { font-size: 0.9375rem; margin-bottom: 16px; }
+    .service-link { color: var(--blue); font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+    .service-link:hover { gap: 10px; }
+
+    /* Why Choose Us */
+    .why-us { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .why-us-image { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); }
+    .why-us-image img { width: 100%; height: auto; }
+    .why-us-content h2 { margin-bottom: 24px; color: var(--navy); }
+    .why-us-list { margin-bottom: 32px; }
+    .why-us-item { display: flex; gap: 16px; margin-bottom: 20px; }
+    .check-icon { width: 24px; height: 24px; background: var(--teal); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .check-icon svg { width: 14px; height: 14px; stroke: var(--white); }
+    .why-us-item h4 { color: var(--navy); margin-bottom: 4px; }
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 32px; background: var(--grey); border-radius: var(--radius-lg); }
+    .stats-item { text-align: center; }
+    .stats-item .value { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--navy); }
+    .stats-item .label { font-size: 0.875rem; color: var(--text-muted); }
+
+    /* Events Preview */
+    .events-scroll { display: flex; gap: 24px; overflow-x: auto; padding: 8px 0; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+    .events-scroll::-webkit-scrollbar { height: 6px; }
+    .events-scroll::-webkit-scrollbar-track { background: var(--grey); border-radius: 3px; }
+    .events-scroll::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+    .event-card { min-width: 340px; background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); scroll-snap-align: start; transition: all var(--transition); }
+    .event-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .event-date-badge { background: var(--navy); color: var(--white); padding: 12px 16px; text-align: center; }
+    .event-date-badge .day { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; line-height: 1; }
+    .event-date-badge .month { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 1px; }
+    .event-card-content { padding: 24px; }
+    .event-type-pill { display: inline-block; padding: 4px 12px; background: var(--grey); color: var(--text-muted); border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+    .event-card h3 { color: var(--navy); font-size: 1.125rem; margin-bottom: 8px; }
+    .event-location { display: flex; align-items: center; gap: 6px; color: var(--text-muted); font-size: 0.875rem; margin-bottom: 12px; }
+    .event-location svg { width: 16px; height: 16px; stroke: var(--text-muted); }
+
+    /* Testimonials */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .testimonial-card { background: var(--white); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow); }
+    .stars { display: flex; gap: 4px; margin-bottom: 16px; }
+    .star { width: 20px; height: 20px; background: #fbbf24; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+    .testimonial-quote { font-size: 1rem; line-height: 1.8; margin-bottom: 24px; color: var(--text); }
+    .testimonial-author { display: flex; align-items: center; gap: 16px; }
+    .testimonial-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
+    .testimonial-name { font-weight: 600; color: var(--navy); }
+    .testimonial-role { font-size: 0.875rem; color: var(--text-muted); }
+
+    /* Partners */
+    .partners-track { display: flex; gap: 48px; animation: scroll 30s linear infinite; }
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .partner-item { flex-shrink: 0; font-size: 1.25rem; font-weight: 700; color: var(--text-muted); opacity: 0.6; letter-spacing: 2px; text-transform: uppercase; }
+    .partners-container { overflow: hidden; padding: 24px 0; background: var(--grey); }
+
+    /* Blog/Insights */
+    .insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .insight-card { background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); transition: all var(--transition); }
+    .insight-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .insight-image { height: 200px; overflow: hidden; }
+    .insight-image img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition); }
+    .insight-card:hover .insight-image img { transform: scale(1.05); }
+    .insight-content { padding: 24px; }
+    .insight-meta { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 8px; }
+    .insight-card h3 { color: var(--navy); font-size: 1.125rem; margin-bottom: 8px; line-height: 1.4; }
+    .insight-card p { font-size: 0.9375rem; margin-bottom: 16px; }
+
+    /* CTA Banner */
+    .cta-banner { background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); padding: 80px 24px; text-align: center; }
+    .cta-banner h2 { color: var(--white); margin-bottom: 16px; }
+    .cta-banner p { color: rgba(255,255,255,0.9); font-size: 1.125rem; margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+    /* Footer */
+    .footer { background: var(--navy); color: var(--white); padding: 64px 0 24px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr repeat(4, 1fr); gap: 48px; margin-bottom: 48px; }
+    .footer-brand p { color: rgba(255,255,255,0.7); margin-top: 16px; font-size: 0.9375rem; }
+    .footer-col h4 { color: var(--white); margin-bottom: 20px; font-size: 1rem; }
+    .footer-col ul li { margin-bottom: 12px; }
+    .footer-col a { color: rgba(255,255,255,0.7); font-size: 0.9375rem; transition: color var(--transition); }
+    .footer-col a:hover { color: var(--white); }
+    .footer-contact li { display: flex; align-items: flex-start; gap: 12px; color: rgba(255,255,255,0.7); font-size: 0.9375rem; margin-bottom: 16px; }
+    .footer-contact svg { width: 20px; height: 20px; stroke: var(--teal); flex-shrink: 0; margin-top: 2px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 0.875rem; color: rgba(255,255,255,0.6); }
+
+    /* Page Hero */
+    .page-hero { background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); padding: 120px 24px 60px; text-align: center; }
+    .page-hero h1 { color: var(--white); margin-bottom: 16px; }
+    .page-hero p { color: rgba(255,255,255,0.9); font-size: 1.125rem; }
+    .breadcrumb { display: flex; justify-content: center; gap: 8px; margin-bottom: 24px; font-size: 0.875rem; }
+    .breadcrumb a { color: rgba(255,255,255,0.7); }
+    .breadcrumb span { color: rgba(255,255,255,0.5); }
+
+    /* Services Page */
+    .service-detail-modal { display: none; position: fixed; inset: 0; z-index: 2000; align-items: center; justify-content: center; padding: 24px; }
+    .service-detail-modal.active { display: flex; }
+    .modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+    .modal-content { position: relative; background: var(--white); border-radius: var(--radius-lg); max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 48px; }
+    .modal-close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: var(--grey); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all var(--transition); }
+    .modal-close:hover { background: var(--grey-dark); }
+    .modal-close svg { width: 20px; height: 20px; stroke: var(--text); }
+    .modal-icon { width: 72px; height: 72px; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+    .modal-icon svg { width: 36px; height: 36px; stroke: var(--white); }
+    .modal-content h2 { color: var(--navy); margin-bottom: 16px; }
+    .modal-content > p { font-size: 1.0625rem; line-height: 1.8; margin-bottom: 24px; }
+    .modal-features { margin-bottom: 24px; }
+    .modal-features h3 { color: var(--navy); margin-bottom: 16px; }
+    .modal-features ul { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .modal-features li { display: flex; align-items: center; gap: 10px; }
+    .modal-features li::before { content: ''; width: 8px; height: 8px; background: var(--teal); border-radius: 50%; }
+    .use-cases { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+    .use-case { background: var(--grey); padding: 20px; border-radius: var(--radius); }
+    .use-case h4 { color: var(--navy); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .use-case p { color: var(--text); font-size: 0.9375rem; }
+    .modal-pricing { display: flex; gap: 24px; margin-bottom: 32px; padding: 20px; background: var(--grey); border-radius: var(--radius); }
+    .modal-pricing-item { flex: 1; }
+    .modal-pricing-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 4px; }
+    .modal-pricing-value { font-family: var(--font-heading); font-weight: 700; color: var(--navy); }
+    .related-services { border-top: 1px solid var(--grey-dark); padding-top: 24px; }
+    .related-services h3 { color: var(--navy); margin-bottom: 16px; }
+    .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .related-card { padding: 16px; border: 1px solid var(--grey-dark); border-radius: var(--radius); cursor: pointer; transition: all var(--transition); }
+    .related-card:hover { border-color: var(--blue); background: var(--grey); }
+
+    /* Events Page */
+    .events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .events-full-grid .event-card { min-width: auto; }
+
+    /* Event Modal */
+    .event-modal { display: none; position: fixed; inset: 0; z-index: 2000; align-items: center; justify-content: center; padding: 24px; }
+    .event-modal.active { display: flex; }
+    .event-modal .modal-content { max-width: 600px; }
+    .event-modal h2 { color: var(--navy); margin-bottom: 8px; }
+    .event-modal .event-meta { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; color: var(--text-muted); font-size: 0.9375rem; }
+    .event-modal .event-meta svg { width: 18px; height: 18px; stroke: var(--text-muted); }
+    .event-modal .event-meta span { display: flex; align-items: center; gap: 6px; }
+    .event-form { display: flex; flex-direction: column; gap: 16px; }
+    .event-form input { padding: 14px 16px; border: 1px solid var(--grey-dark); border-radius: var(--radius); font-size: 1rem; }
+    .event-form input:focus { outline: none; border-color: var(--blue); }
+    .booking-confirmation { text-align: center; padding: 40px; }
+    .booking-confirmation svg { width: 64px; height: 64px; stroke: var(--teal); margin-bottom: 24px; }
+    .booking-ref { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--teal); margin: 16px 0; }
+
+    /* Gallery */
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .gallery-item { position: relative; border-radius: var(--radius); overflow: hidden; cursor: pointer; aspect-ratio: 4/3; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition); }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(4,44,83,0.9) 0%, transparent 60%); opacity: 0; transition: opacity var(--transition); display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay h3 { color: var(--white); font-size: 1rem; margin-bottom: 4px; }
+    .gallery-overlay span { color: rgba(255,255,255,0.8); font-size: 0.875rem; }
+
+    /* Lightbox */
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(0,0,0,0.95); }
+    .lightbox.active { display: flex; align-items: center; justify-content: center; padding: 24px; }
+    .lightbox-close { position: absolute; top: 24px; right: 24px; width: 48px; height: 48px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .lightbox-close svg { width: 24px; height: 24px; stroke: var(--white); }
+    .lightbox-content { max-width: 1000px; width: 100%; }
+    .lightbox-content img { width: 100%; border-radius: var(--radius); margin-bottom: 24px; }
+    .lightbox-info h2 { color: var(--white); font-size: 1.75rem; margin-bottom: 8px; }
+    .lightbox-info .meta { color: rgba(255,255,255,0.7); margin-bottom: 16px; display: flex; gap: 24px; }
+    .lightbox-info p { color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 20px; }
+    .lightbox-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+    .lightbox-tag { padding: 6px 14px; background: rgba(255,255,255,0.1); color: var(--white); border-radius: 20px; font-size: 0.875rem; }
+
+    /* Contact Page */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 48px; }
+    .contact-info-card { background: var(--grey); padding: 32px; border-radius: var(--radius-lg); }
+    .contact-info-card h3 { color: var(--navy); margin-bottom: 24px; }
+    .contact-item { display: flex; gap: 16px; margin-bottom: 24px; }
+    .contact-item-icon { width: 48px; height: 48px; background: var(--navy); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .contact-item-icon svg { width: 24px; height: 24px; stroke: var(--white); }
+    .contact-item h4 { color: var(--navy); margin-bottom: 4px; }
+    .contact-item p { font-size: 0.9375rem; }
+    .contact-item a { color: var(--blue); }
+    .map-placeholder { background: var(--navy); height: 200px; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; margin-top: 24px; }
+    .map-placeholder a { color: var(--white); font-weight: 600; }
+    .social-links { display: flex; gap: 12px; margin-top: 24px; }
+    .social-link { padding: 10px 20px; background: var(--navy); color: var(--white); border-radius: var(--radius); font-weight: 600; font-size: 0.875rem; transition: all var(--transition); }
+    .social-link:hover { background: var(--blue); }
+    .contact-form-card { background: var(--white); border: 1px solid var(--grey-dark); border-radius: var(--radius-lg); padding: 40px; }
+    .contact-form-card h3 { color: var(--navy); margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; margin-bottom: 6px; font-weight: 500; color: var(--text); }
+    .form-group label span { color: #dc2626; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 14px 16px; border: 1px solid var(--grey-dark); border-radius: var(--radius); font-size: 1rem; transition: all var(--transition); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(24,95,165,0.1); }
+    .form-group.error input, .form-group.error select, .form-group.error textarea { border-color: #dc2626; }
+    .error-text { color: #dc2626; font-size: 0.875rem; margin-top: 4px; display: none; }
+    .form-group.error .error-text { display: block; }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+
+    /* Receipt Page */
+    .receipt-container { max-width: 800px; margin: 0 auto; padding: 40px 24px; }
+    .receipt-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 2px solid var(--grey-dark); }
+    .receipt-header h1 { color: var(--navy); font-size: 2rem; }
+    .receipt-logo { font-family: var(--font-heading); font-weight: 800; font-size: 1.5rem; color: var(--navy); }
+    .receipt-ref { text-align: center; padding: 32px; background: var(--grey); border-radius: var(--radius-lg); margin-bottom: 32px; }
+    .receipt-ref span { display: block; font-size: 0.875rem; color: var(--text-muted); margin-bottom: 8px; }
+    .receipt-ref strong { font-family: var(--font-heading); font-size: 2rem; color: var(--teal); }
+    .receipt-details { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+    .receipt-detail { padding: 16px; background: var(--grey); border-radius: var(--radius); }
+    .receipt-detail label { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 4px; }
+    .receipt-detail p { color: var(--text); font-weight: 500; }
+    .receipt-actions { display: flex; gap: 16px; justify-content: center; }
+
+    /* Tracker Page */
+    .tracker-container { max-width: 600px; margin: 0 auto; padding: 40px 24px; }
+    .tracker-search { display: flex; gap: 16px; margin-bottom: 48px; }
+    .tracker-search input { flex: 1; padding: 16px 20px; border: 2px solid var(--grey-dark); border-radius: var(--radius); font-size: 1rem; }
+    .tracker-search input:focus { outline: none; border-color: var(--blue); }
+    .tracker-timeline { position: relative; padding-left: 40px; }
+    .tracker-timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 2px; background: var(--grey-dark); }
+    .timeline-step { position: relative; padding-bottom: 32px; }
+    .timeline-step:last-child { padding-bottom: 0; }
+    .timeline-dot { position: absolute; left: -40px; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--white); border: 3px solid var(--grey-dark); display: flex; align-items: center; justify-content: center; }
+    .timeline-dot.done { background: var(--teal); border-color: var(--teal); }
+    .timeline-dot.done::after { content: ''; width: 12px; height: 12px; background: var(--white); border-radius: 50%; }
+    .timeline-dot.current { border-color: var(--blue); }
+    .timeline-dot.current::after { content: ''; width: 16px; height: 16px; background: var(--blue); border-radius: 50%; }
+    .timeline-content h4 { color: var(--navy); margin-bottom: 4px; }
+    .timeline-content p { font-size: 0.9375rem; color: var(--text-muted); }
+    .tracker-not-found { text-align: center; padding: 48px; }
+    .tracker-not-found svg { width: 64px; height: 64px; stroke: var(--text-muted); margin-bottom: 16px; }
+
+    /* Admin Login */
+    .admin-login { min-height: calc(100vh - 80px); display: flex; align-items: center; justify-content: center; padding: 40px 24px; }
+    .login-card { background: var(--white); border-radius: var(--radius-lg); padding: 48px; box-shadow: var(--shadow-lg); width: 100%; max-width: 420px; }
+    .login-card h2 { color: var(--navy); text-align: center; margin-bottom: 8px; }
+    .login-card > p { text-align: center; margin-bottom: 32px; color: var(--text-muted); }
+    .login-card .form-group { margin-bottom: 20px; }
+    .login-error { background: #fef2f2; color: #dc2626; padding: 12px 16px; border-radius: var(--radius); margin-bottom: 16px; display: none; }
+    .login-error.show { display: block; }
+    .demo-credentials { background: var(--grey); padding: 16px; border-radius: var(--radius); margin-top: 24px; font-size: 0.875rem; }
+    .demo-credentials strong { color: var(--navy); }
+
+    /* Admin Layout */
+    .admin-container { display: flex; min-height: calc(100vh - 80px); }
+    .admin-sidebar { width: 240px; background: var(--navy); padding: 24px 0; flex-shrink: 0; display: flex; flex-direction: column; min-height: calc(100vh - 80px); }
+    .admin-nav-item { display: flex; align-items: center; gap: 12px; padding: 14px 24px; color: rgba(255,255,255,0.7); cursor: pointer; transition: all var(--transition); border-left: 3px solid transparent; }
+    .admin-nav-item:hover { background: rgba(255,255,255,0.05); color: var(--white); }
+    .admin-nav-item.active { background: rgba(255,255,255,0.1); color: var(--white); border-left-color: var(--teal); }
+    .admin-nav-item svg { width: 20px; height: 20px; stroke: currentColor; }
+    .admin-main { flex: 1; padding: 24px; background: var(--grey); }
+    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .admin-header h2 { color: var(--navy); }
+    .connection-status { display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 20px; font-size: 0.875rem; font-weight: 500; }
+    .connection-status.connected { background: #d1fae5; color: #065f46; }
+    .connection-status.offline { background: #fef3c7; color: #92400e; }
+    .connection-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .connection-status.connected .connection-dot { background: #059669; }
+    .connection-status.offline .connection-dot { background: #d97706; }
+
+    /* CMS & Settings */
+    .cms-section-label { font-weight: 700; font-size: 0.875rem; letter-spacing: 0.5px; text-transform: uppercase; color: var(--navy); margin: 24px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--grey-dark); }
+    .settings-toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--grey-dark); }
+    .settings-toggle-label { font-weight: 600; color: var(--navy); margin-bottom: 3px; }
+    .settings-toggle-desc { font-size: 0.8125rem; color: var(--text-muted); }
+    .toggle-switch { position: relative; display: inline-block; width: 44px; height: 24px; flex-shrink: 0; }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider { position: absolute; cursor: pointer; inset: 0; background: var(--grey-dark); border-radius: 24px; transition: all var(--transition); }
+    .toggle-slider::before { content: ''; position: absolute; width: 18px; height: 18px; background: white; border-radius: 50%; left: 3px; top: 3px; transition: all var(--transition); }
+    .toggle-switch input:checked + .toggle-slider { background: var(--teal); }
+    .toggle-switch input:checked + .toggle-slider::before { transform: translateX(20px); }
+    .nav-link[data-page="demo"] { color: var(--teal); font-weight: 700; }
+    .admin-logout-btn { margin-top: auto; border-top: 1px solid rgba(255,255,255,0.1); color: #fca5a5 !important; }
+    .admin-logout-btn:hover { background: rgba(220,38,38,0.15) !important; color: #f87171 !important; }
+
+    /* ── Admin Dashboard ──────────────────────────────────── */
+    .dash-kpi-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 24px; }
+    .kpi-card {
+      background: var(--white); padding: 20px 20px 16px; border-radius: var(--radius-lg);
+      box-shadow: var(--shadow); border-left: 4px solid transparent; transition: all var(--transition);
+    }
+    .kpi-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .kpi-card.blue   { border-left-color: var(--blue); }
+    .kpi-card.teal   { border-left-color: var(--teal); }
+    .kpi-card.navy   { border-left-color: var(--navy); }
+    .kpi-card.green  { border-left-color: var(--green); }
+    .kpi-card.red    { border-left-color: #dc2626; }
+    .kpi-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+    .kpi-icon { font-size: 1.5rem; }
+    .kpi-label { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 6px; }
+    .kpi-value { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--navy); line-height: 1; }
+    .kpi-change { font-size: 0.8rem; margin-top: 6px; font-weight: 600; }
+    .kpi-change.up   { color: var(--teal); }
+    .kpi-change.down { color: #dc2626; }
+    .kpi-change.flat { color: var(--text-muted); }
+
+    /* Chart grid rows */
+    .dash-row-3 { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+    .dash-row-2 { display: grid; grid-template-columns: 1.8fr 1fr; gap: 24px; }
+    .chart-card { background: var(--white); padding: 24px; border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+    .chart-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .chart-card-header h3 { color: var(--navy); font-size: 1rem; }
+    .chart-subtitle { font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* Bar chart */
+    .bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 160px; padding-top: 24px; }
+    .bar { flex: 1; background: var(--blue); border-radius: 4px 4px 0 0; position: relative; transition: all var(--transition); min-height: 4px; }
+    .bar:hover { background: var(--teal); }
+    .bar span { position: absolute; bottom: -22px; left: 50%; transform: translateX(-50%); font-size: 0.65rem; color: var(--text-muted); white-space: nowrap; }
+    .bar::before { content: attr(data-value); position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 0.7rem; font-weight: 700; color: var(--navy); opacity: 0; transition: opacity var(--transition); }
+    .bar:hover::before { opacity: 1; }
+
+    /* Donut chart */
+    .donut-wrap { position: relative; display: flex; justify-content: center; align-items: center; margin: 8px 0 16px; }
+    .donut-center { position: absolute; text-align: center; }
+    .donut-center-val { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; color: var(--navy); }
+    .donut-center-lbl { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .pie-legend { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .pie-legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.75rem; color: var(--text-muted); }
+    .pie-legend-color { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+    /* Activity feed */
+    .activity-card { overflow: hidden; }
+    .activity-feed { display: flex; flex-direction: column; gap: 0; max-height: 220px; overflow-y: auto; }
+    .activity-item { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--grey); }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+    .activity-text { font-size: 0.8125rem; color: var(--text); line-height: 1.4; }
+    .activity-time { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+
+    /* Service interest bars */
+    .svc-bar-row { margin-bottom: 12px; }
+    .svc-bar-meta { display: flex; justify-content: space-between; font-size: 0.8125rem; margin-bottom: 5px; }
+    .svc-bar-name { color: var(--text); font-weight: 500; max-width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .svc-bar-count { color: var(--text-muted); font-weight: 600; }
+    .svc-bar-track { height: 7px; background: var(--grey-dark); border-radius: 4px; overflow: hidden; }
+    .svc-bar-fill  { height: 100%; border-radius: 4px; transition: width 600ms ease-out; }
+
+    /* Country bars */
+    .country-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 11px; }
+    .country-bar-name { width: 90px; font-size: 0.8125rem; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .country-bar-track { flex: 1; height: 8px; background: var(--grey-dark); border-radius: 4px; overflow: hidden; }
+    .country-bar-fill { height: 100%; background: linear-gradient(90deg, var(--blue), var(--teal)); border-radius: 4px; }
+    .country-bar-n { font-size: 0.8rem; font-weight: 700; color: var(--navy); min-width: 20px; text-align: right; }
+
+    /* Upcoming events list */
+    .event-mini { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--grey); }
+    .event-mini:last-child { border-bottom: none; }
+    .event-mini-badge { background: var(--navy); color: white; border-radius: 6px; padding: 4px 8px; text-align: center; min-width: 42px; flex-shrink: 0; }
+    .event-mini-day   { font-size: 1.1rem; font-weight: 800; line-height: 1; }
+    .event-mini-month { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; }
+    .event-mini-title { font-size: 0.875rem; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+    .event-mini-loc   { font-size: 0.75rem; color: var(--text-muted); }
+    .event-mini-pill  { display: inline-block; font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 100px; background: rgba(24,95,165,0.1); color: var(--blue); margin-bottom: 3px; }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .dash-kpi-row { grid-template-columns: repeat(3, 1fr); }
+      .dash-row-3   { grid-template-columns: 1fr 1fr; }
+      .activity-card { display: none; }
+    }
+    @media (max-width: 900px) {
+      .dash-kpi-row { grid-template-columns: repeat(2, 1fr); }
+      .dash-row-3, .dash-row-2 { grid-template-columns: 1fr; }
+    }
+    .admin-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+    .admin-table th { text-align: left; padding: 12px; background: var(--grey); color: var(--navy); font-weight: 600; font-size: 0.875rem; }
+    .admin-table td { padding: 12px; border-bottom: 1px solid var(--grey-dark); font-size: 0.9375rem; }
+    .admin-table tr:hover { background: var(--grey); }
+    .status-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+    .status-badge.new { background: #dbeafe; color: #1e40af; }
+    .status-badge.in-progress { background: #d1fae5; color: #065f46; }
+    .status-badge.pending { background: #fef3c7; color: #92400e; }
+    .status-badge.closed { background: #e5e7eb; color: #374151; }
+
+    /* Admin Enquiries Page */
+    .enquiries-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
+    .filter-dropdown { padding: 10px 16px; border: 1px solid var(--grey-dark); border-radius: var(--radius); font-size: 0.9375rem; }
+    .enquiry-count { color: var(--text-muted); font-size: 0.9375rem; }
+    .status-select { padding: 6px 12px; border: 1px solid var(--grey-dark); border-radius: var(--radius); font-size: 0.875rem; cursor: pointer; }
+
+    /* Admin Reports */
+    .report-section { background: var(--white); padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 24px; }
+    .report-section h3 { color: var(--navy); margin-bottom: 20px; }
+    .progress-bar { height: 24px; background: var(--grey-dark); border-radius: 12px; overflow: hidden; margin-bottom: 8px; }
+    .progress-fill { height: 100%; border-radius: 12px; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; font-size: 0.75rem; font-weight: 600; color: var(--white); }
+    .report-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--grey); }
+    .report-row:last-child { border-bottom: none; }
+
+    /* Admin Events */
+    .event-type-conference { background: #dbeafe; color: #1e40af; }
+    .event-type-workshop { background: #fef3c7; color: #92400e; }
+    .event-type-masterclass { background: #d1fae5; color: #065f46; }
+    .event-type-forum { background: #f3e8ff; color: #6b21a8; }
+    .event-type-open-day { background: #fee2e2; color: #991b1b; }
+    .event-type-technical-session { background: #e0e7ff; color: #3730a3; }
+
+    /* Chatbot */
+    .chatbot-btn { position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px; background: linear-gradient(135deg, var(--navy), var(--blue)); border-radius: var(--radius); box-shadow: var(--shadow-lg); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1500; transition: all var(--transition); }
+    .chatbot-btn:hover { transform: scale(1.05); }
+    .chatbot-btn svg { width: 28px; height: 28px; stroke: var(--white); }
+    .chatbot-window { position: fixed; bottom: 100px; right: 24px; width: 380px; height: 520px; background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); display: none; flex-direction: column; z-index: 1500; overflow: hidden; }
+    .chatbot-window.active { display: flex; }
+    .chatbot-header { background: linear-gradient(135deg, var(--navy), var(--blue)); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .chatbot-header h4 { color: var(--white); font-size: 1rem; }
+    .chatbot-status { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8); font-size: 0.875rem; }
+    .chatbot-status::before { content: ''; width: 8px; height: 8px; background: #22c55e; border-radius: 50%; }
+    .chatbot-minimize { color: var(--white); padding: 4px; cursor: pointer; }
+    .chatbot-messages { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+    .chat-message { max-width: 85%; padding: 12px 16px; border-radius: var(--radius); font-size: 0.9375rem; line-height: 1.5; }
+    .chat-message.bot { background: var(--grey); color: var(--text); align-self: flex-start; border-bottom-left-radius: 4px; }
+    .chat-message.user { background: var(--blue); color: var(--white); align-self: flex-end; border-bottom-right-radius: 4px; }
+    .typing-indicator { display: flex; gap: 4px; padding: 12px 16px; background: var(--grey); border-radius: var(--radius); align-self: flex-start; }
+    .typing-dot { width: 8px; height: 8px; background: var(--text-muted); border-radius: 50%; animation: typing 1.4s infinite; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+    .chatbot-input { padding: 16px; border-top: 1px solid var(--grey-dark); display: flex; gap: 12px; }
+    .chatbot-input input { flex: 1; padding: 12px 16px; border: 1px solid var(--grey-dark); border-radius: var(--radius); font-size: 0.9375rem; }
+    .chatbot-input input:focus { outline: none; border-color: var(--blue); }
+    .chatbot-send { width: 44px; height: 44px; background: var(--blue); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all var(--transition); }
+    .chatbot-send:hover { background: var(--navy); }
+    .chatbot-send svg { width: 20px; height: 20px; stroke: var(--white); }
+    .chatbot-footer { padding: 8px 16px; text-align: center; border-top: 1px solid var(--grey-dark); }
+    .chatbot-footer a { color: var(--blue); font-size: 0.8125rem; }
+
+    /* Install Banner */
+    .install-banner { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, var(--navy), var(--blue)); padding: 16px 24px; display: none; align-items: center; justify-content: center; gap: 24px; z-index: 1400; }
+    .install-banner.show { display: flex; }
+    .install-banner span { color: var(--white); font-weight: 500; }
+    .install-banner button { padding: 10px 24px; background: var(--white); color: var(--navy); border-radius: var(--radius); font-weight: 600; }
+    .install-dismiss { color: rgba(255,255,255,0.7); cursor: pointer; margin-left: auto; }
+
+    /* Utility Classes */
+    .text-center { text-align: center; }
+    .mt-4 { margin-top: 16px; }
+    .mt-8 { margin-top: 32px; }
+    .mb-4 { margin-bottom: 16px; }
+    .mb-8 { margin-bottom: 32px; }
+    .hidden { display: none !important; }
+
+    /* ── Nav Horizontal Divider ── */
+    .nav-divider {
+      width: 1px;
+      height: 24px;
+      background: var(--grey-dark);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ── Feedback Section ── */
+    .feedback-section { background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); padding: 60px 0; }
+    .feedback-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .feedback-text h2 { color: var(--white); margin-bottom: 12px; }
+    .feedback-text p { color: rgba(255,255,255,0.85); font-size: 1.0625rem; line-height: 1.7; }
+    .feedback-card { background: var(--white); border-radius: var(--radius-lg); padding: 36px; box-shadow: 0 12px 48px rgba(0,0,0,0.18); }
+    .feedback-card h3 { color: var(--navy); margin-bottom: 6px; font-size: 1.25rem; }
+    .feedback-card > p { font-size: 0.9375rem; margin-bottom: 20px; }
+    .star-rating { display: flex; gap: 8px; margin-bottom: 20px; }
+    .star-btn { font-size: 2rem; background: none; border: none; cursor: pointer; color: var(--grey-dark); transition: color var(--transition), transform var(--transition); line-height: 1; }
+    .star-btn:hover, .star-btn.selected { color: #fbbf24; transform: scale(1.15); }
+    .feedback-form-group { margin-bottom: 16px; }
+    .feedback-form-group label { display: block; font-weight: 600; font-size: 0.875rem; color: var(--navy); margin-bottom: 6px; }
+    .feedback-form-group textarea { width: 100%; padding: 12px 14px; border: 1.5px solid var(--grey-dark); border-radius: var(--radius); resize: vertical; font-size: 0.9375rem; min-height: 90px; transition: border-color var(--transition); }
+    .feedback-form-group textarea:focus { outline: none; border-color: var(--blue); }
+    .feedback-form-group input { width: 100%; padding: 12px 14px; border: 1.5px solid var(--grey-dark); border-radius: var(--radius); font-size: 0.9375rem; transition: border-color var(--transition); }
+    .feedback-form-group input:focus { outline: none; border-color: var(--blue); }
+    .feedback-submit { width: 100%; }
+    .feedback-success { display: none; text-align: center; padding: 24px 0; }
+    .feedback-success .success-icon { font-size: 3rem; margin-bottom: 12px; }
+    .feedback-success h4 { color: var(--navy); margin-bottom: 8px; }
+    .feedback-success p { font-size: 0.9375rem; }
+    @media (max-width: 768px) { .feedback-inner { grid-template-columns: 1fr; gap: 32px; } }
+
+    /* ── Email Newsletter & Follow-Back ── */
+    .newsletter-section { background: var(--grey); padding: 56px 0; border-top: 1px solid var(--grey-dark); }
+    .newsletter-inner { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: space-between; }
+    .newsletter-copy h2 { color: var(--navy); font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 8px; }
+    .newsletter-copy p { font-size: 1rem; max-width: 420px; }
+    .newsletter-form-wrap { display: flex; flex-direction: column; gap: 12px; min-width: 340px; flex: 1; }
+    .newsletter-row { display: flex; gap: 0; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .newsletter-row input { flex: 1; padding: 14px 18px; border: 1.5px solid var(--grey-dark); border-right: none; border-radius: var(--radius) 0 0 var(--radius); font-size: 0.9375rem; background: var(--white); }
+    .newsletter-row input:focus { outline: none; border-color: var(--blue); }
+    .newsletter-row button { padding: 14px 24px; background: var(--navy); color: var(--white); font-weight: 700; font-size: 0.9375rem; border-radius: 0 var(--radius) var(--radius) 0; white-space: nowrap; transition: background var(--transition); }
+    .newsletter-row button:hover { background: var(--blue); }
+    .newsletter-followback { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .newsletter-followback span { font-size: 0.875rem; color: var(--text-muted); font-weight: 600; }
+    .follow-links { display: flex; gap: 10px; }
+    .follow-link { display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px; border-radius: var(--radius); font-size: 0.8125rem; font-weight: 700; text-decoration: none; transition: all var(--transition); }
+    .follow-link.linkedin  { background: #0A66C2; color: #fff; }
+    .follow-link.linkedin:hover  { background: #084d93; }
+    .follow-link.twitter   { background: #000; color: #fff; }
+    .follow-link.twitter:hover   { background: #222; }
+    .follow-link.youtube   { background: #FF0000; color: #fff; }
+    .follow-link.youtube:hover   { background: #cc0000; }
+    .follow-link svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+    .newsletter-success-msg { display: none; color: var(--teal); font-weight: 600; font-size: 0.9375rem; padding: 10px 0; }
+    @media (max-width: 768px) { .newsletter-inner { flex-direction: column; align-items: stretch; } .newsletter-form-wrap { min-width: 0; } }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .what-we-do { grid-template-columns: repeat(3, 1fr); }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .admin-kpis { grid-template-columns: repeat(3, 1fr); }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+      .admin-charts { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav { display: none; }
+      .hamburger { display: flex; }
+      .header-cta .btn { display: none; }
+      .what-we-do { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .why-us { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .insights-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .receipt-details { grid-template-columns: 1fr; }
+      .admin-sidebar { display: none; }
+      .admin-kpis { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .events-grid { grid-template-columns: 1fr; }
+      .chatbot-window { right: 0; bottom: 0; width: 100%; height: calc(100% - 80px); border-radius: 0; padding-bottom: env(safe-area-inset-bottom); }
+      .modal-content { padding: 24px; }
+      .modal-features ul { grid-template-columns: 1fr; }
+      .use-cases { grid-template-columns: 1fr; }
+      .related-grid { grid-template-columns: 1fr; }
+      .db-info { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-stats { gap: 24px; }
+      .stat-value { font-size: 2rem; }
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn { width: 100%; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: 1fr; }
+      .enquiries-header { flex-direction: column; align-items: stretch; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="#" class="logo" onclick="go('home'); return false;">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        AI-Solutions
+      </a>
+      <nav class="nav" id="mainNav">
+        <a href="#" class="nav-link active" data-page="home" onclick="go('home'); return false;">Home</a>
+        <a href="#" class="nav-link" data-page="services" onclick="go('services'); return false;">Services</a>
+        <a href="#" class="nav-link" data-page="events" onclick="go('events'); return false;">Events</a>
+        <a href="#" class="nav-link" data-page="gallery" onclick="go('gallery'); return false;">Gallery</a>
+        <a href="#" class="nav-link" data-page="contact" onclick="go('contact'); return false;">Contact</a>
+        <a href="#" class="nav-link" data-page="demo" onclick="go('demo'); return false;">Book a Demo</a>
+      </nav>
+      <div class="nav-divider" aria-hidden="true"></div>
+      <div class="header-cta">
+        <a href="#" class="btn btn-primary btn-sm" onclick="go('demo'); return false;">Get Started</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#" onclick="go('home'); closeMobileMenu(); return false;">Home</a>
+    <a href="#" onclick="go('services'); closeMobileMenu(); return false;">Services</a>
+    <a href="#" onclick="go('events'); closeMobileMenu(); return false;">Events</a>
+    <a href="#" onclick="go('gallery'); closeMobileMenu(); return false;">Gallery</a>
+    <a href="#" onclick="go('contact'); closeMobileMenu(); return false;">Contact</a>
+    <a href="#" onclick="go('demo'); closeMobileMenu(); return false;">Book a Demo</a>
+    <a href="#" onclick="go('admin'); closeMobileMenu(); return false;">Admin</a>
+  </div>
+
+  <!-- Home Page -->
+  <main class="page active" id="page-home">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <h1>Transform Your Business with Intelligent AI Solutions</h1>
+        <p class="hero-subtitle">AI-Solutions delivers enterprise-grade artificial intelligence services that drive efficiency, reduce costs, and unlock new opportunities for growth across industries.</p>
+        <div class="hero-ctas">
+          <a href="#" class="btn btn-primary" onclick="go('services'); return false;">Explore Services</a>
+          <a href="#" class="btn btn-secondary" style="border-color: white; color: white;" onclick="go('demo'); return false;">Book a Demo</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </div>
+            <div class="stat-value" data-target="200">0</div>
+            <div class="stat-label">Global Clients</div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <div class="stat-value" data-target="98">0</div>
+            <div class="stat-label">Satisfaction Rate %</div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <line x1="9" y1="9" x2="15" y2="15"/>
+                <line x1="15" y1="9" x2="9" y2="15"/>
+              </svg>
+            </div>
+            <div class="stat-value" data-target="50">0</div>
+            <div class="stat-label">AI Solutions Delivered</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What We Do -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>What We Do</h2>
+          <p>We empower organisations to harness the full potential of artificial intelligence through tailored solutions, expert guidance, and end-to-end implementation support.</p>
+        </div>
+        <div class="what-we-do">
+          <div class="wwd-card">
+            <div class="wwd-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
+                <path d="M16 14v2a4 4 0 0 1-8 0v-2M12 14v6M8 20h8"/>
+              </svg>
+            </div>
+            <h3>Intelligent Consulting</h3>
+            <p>Our AI strategists work closely with leadership teams to identify high-impact opportunities and create roadmaps for sustainable AI adoption.</p>
+          </div>
+          <div class="wwd-card">
+            <div class="wwd-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+              </svg>
+            </div>
+            <h3>Custom Development</h3>
+            <p>From proof-of-concept to production deployment, our engineers build robust, scalable AI systems tailored to your specific business requirements.</p>
+          </div>
+          <div class="wwd-card">
+            <div class="wwd-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h3>Training & Enablement</h3>
+            <p>We equip your teams with the knowledge and skills to manage, optimise, and extend AI solutions independently, ensuring long-term success.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Preview -->
+    <section class="section section-grey">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our AI Services</h2>
+          <p>Comprehensive artificial intelligence solutions designed to address real business challenges across every sector.</p>
+        </div>
+        <div class="services-grid" id="servicesGridHome"></div>
+        <div class="text-center mt-8">
+          <a href="#" class="btn btn-blue" onclick="go('services'); return false;">View All Services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section">
+      <div class="container">
+        <div class="why-us">
+          <div class="why-us-image">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&auto=format&fit=crop" alt="AI-Solutions team collaborating">
+          </div>
+          <div class="why-us-content">
+            <h2>Why Choose AI-Solutions?</h2>
+            <div class="why-us-list">
+              <div class="why-us-item">
+                <div class="check-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4>Industry-Specific Expertise</h4>
+                  <p>Deep experience across healthcare, finance, logistics, manufacturing, and retail sectors with proven case studies.</p>
+                </div>
+              </div>
+              <div class="why-us-item">
+                <div class="check-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4>Responsible AI Practices</h4>
+                  <p>Every solution adheres to UK AI ethics guidelines, data protection regulations, and transparency standards.</p>
+                </div>
+              </div>
+              <div class="why-us-item">
+                <div class="check-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4>End-to-End Partnership</h4>
+                  <p>From initial strategy through to ongoing optimisation, we remain invested in your AI success story.</p>
+                </div>
+              </div>
+              <div class="why-us-item">
+                <div class="check-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4>Rapid Time-to-Value</h4>
+                  <p>Proven methodologies deliver working AI prototypes in days, not months, so you see results fast.</p>
+                </div>
+              </div>
+            </div>
+            <div class="stats-row">
+              <div class="stats-item">
+                <div class="value">12</div>
+                <div class="label">Industries Served</div>
+              </div>
+              <div class="stats-item">
+                <div class="value">200+</div>
+                <div class="label">Happy Clients</div>
+              </div>
+              <div class="stats-item">
+                <div class="value">98%</div>
+                <div class="label">Client Retention</div>
+              </div>
+              <div class="stats-item">
+                <div class="value">5-Star</div>
+                <div class="label">Support Rating</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Events Preview -->
+    <section class="section section-grey">
+      <div class="container">
+        <div class="section-header">
+          <h2>Upcoming Events</h2>
+          <p>Join industry leaders at our conferences, workshops, and networking events across the UK.</p>
+        </div>
+        <div class="events-scroll" id="eventsPreview"></div>
+        <div class="text-center mt-8">
+          <a href="#" class="btn btn-blue" onclick="go('events'); return false;">View All Events</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>What Our Clients Say</h2>
+          <p>Real feedback from organisations that have transformed their operations with AI-Solutions.</p>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="stars">
+              <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+            </div>
+            <p class="testimonial-quote">"AI-Solutions transformed our patient intake process. The AI virtual assistant handles 80% of inquiries without human intervention, freeing our staff to focus on complex cases."</p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&auto=format&fit=crop&crop=face" alt="Sarah Mitchell" class="testimonial-avatar">
+              <div>
+                <div class="testimonial-name">Sarah Mitchell</div>
+                <div class="testimonial-role">Chief Operations Officer, HealthFirst NHS Trust</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars">
+              <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+            </div>
+            <p class="testimonial-quote">"The predictive analytics solution has been game-changing. We reduced inventory costs by 34% in the first quarter alone. Outstanding ROI and exceptional support throughout."</p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&auto=format&fit=crop&crop=face" alt="James Crawford" class="testimonial-avatar">
+              <div>
+                <div class="testimonial-name">James Crawford</div>
+                <div class="testimonial-role">Supply Chain Director, Norditek Logistics</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars">
+              <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+            </div>
+            <p class="testimonial-quote">"Their team integrated AI-powered threat detection into our security operations in just six weeks. We now identify potential breaches 40 times faster than before."</p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=120&h=120&auto=format&fit=crop&crop=face" alt="Priya Sharma" class="testimonial-avatar">
+              <div>
+                <div class="testimonial-name">Priya Sharma</div>
+                <div class="testimonial-role">CISO, Meridian Financial Group</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="partners-container">
+      <div class="container">
+        <p class="text-center" style="color: var(--text-muted); margin-bottom: 24px; font-weight: 600;">Trusted by leading organisations across the UK and beyond</p>
+      </div>
+      <div style="overflow: hidden;">
+        <div class="partners-track">
+          <span class="partner-item">Barclays UK</span>
+          <span class="partner-item">NHS Digital</span>
+          <span class="partner-item">Tesco Labs</span>
+          <span class="partner-item">Unilever</span>
+          <span class="partner-item">Rolls-Royce</span>
+          <span class="partner-item">British Gas</span>
+          <span class="partner-item">Jaguar Land Rover</span>
+          <span class="partner-item">Barclays UK</span>
+          <span class="partner-item">NHS Digital</span>
+          <span class="partner-item">Tesco Labs</span>
+          <span class="partner-item">Unilever</span>
+          <span class="partner-item">Rolls-Royce</span>
+          <span class="partner-item">British Gas</span>
+          <span class="partner-item">Jaguar Land Rover</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Insights -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Latest Insights</h2>
+          <p>Stay ahead with expert perspectives on artificial intelligence, digital transformation, and innovation.</p>
+        </div>
+        <div class="insights-grid">
+          <div class="insight-card">
+            <div class="insight-image">
+              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop" alt="AI Strategy">
+            </div>
+            <div class="insight-content">
+              <div class="insight-meta">January 15, 2025 by AI-Solutions Team</div>
+              <h3>Building a Successful AI Strategy for 2025</h3>
+              <p>A comprehensive guide to developing an AI roadmap that aligns with business objectives, manages risk, and delivers measurable ROI across organisational tiers.</p>
+              <a href="#" class="service-link">Read More <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-image">
+              <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&auto=format&fit=crop" alt="Responsible AI">
+            </div>
+            <div class="insight-content">
+              <div class="insight-meta">January 8, 2025 by Dr. Emma Richards</div>
+              <h3>The Ethics of Enterprise AI: A Practical Framework</h3>
+              <p>How organisations can balance innovation with responsibility, implement transparent AI systems, and build trust with stakeholders through ethical governance.</p>
+              <a href="#" class="service-link">Read More <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </div>
+          <div class="insight-card">
+            <div class="insight-image">
+              <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&auto=format&fit=crop" alt="AI Implementation">
+            </div>
+            <div class="insight-content">
+              <div class="insight-meta">December 20, 2024 by Marcus Chen</div>
+              <h3>From Pilot to Production: Scaling AI Successfully</h3>
+              <p>Common pitfalls in AI deployment and proven strategies for moving from proof-of-concept to enterprise-wide implementation that drives sustained business value.</p>
+              <a href="#" class="service-link">Read More <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section class="feedback-section">
+      <div class="container">
+        <div class="feedback-inner">
+          <div class="feedback-text">
+            <h2>Your Feedback Matters</h2>
+            <p>We're constantly improving our services and would love to hear your experience with AI-Solutions. Share your thoughts — it only takes 60 seconds and helps us serve you better.</p>
+          </div>
+          <div class="feedback-card">
+            <div id="feedbackFormWrap">
+              <h3>Rate Your Experience</h3>
+              <p>How would you rate working with AI-Solutions?</p>
+              <div class="star-rating" id="starRating" aria-label="Star rating">
+                <button class="star-btn" data-val="1" onclick="setRating(1)" title="1 star">★</button>
+                <button class="star-btn" data-val="2" onclick="setRating(2)" title="2 stars">★</button>
+                <button class="star-btn" data-val="3" onclick="setRating(3)" title="3 stars">★</button>
+                <button class="star-btn" data-val="4" onclick="setRating(4)" title="4 stars">★</button>
+                <button class="star-btn" data-val="5" onclick="setRating(5)" title="5 stars">★</button>
+              </div>
+              <div class="feedback-form-group">
+                <label for="feedbackName">Your Name</label>
+                <input type="text" id="feedbackName" placeholder="e.g. James Crawford">
+              </div>
+              <div class="feedback-form-group">
+                <label for="feedbackMsg">Your Feedback</label>
+                <textarea id="feedbackMsg" placeholder="Tell us about your experience with AI-Solutions..."></textarea>
+              </div>
+              <button class="btn btn-primary feedback-submit" onclick="submitFeedback()">Submit Feedback</button>
+            </div>
+            <div class="feedback-success" id="feedbackSuccess">
+              <div class="success-icon">🎉</div>
+              <h4>Thank You!</h4>
+              <p>Your feedback has been received. We appreciate you taking the time to share your experience with us.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+      <h2>Ready to Transform Your Business with AI?</h2>
+      <p>Join over 200 organisations that have leveraged AI-Solutions to drive innovation, efficiency, and growth.</p>
+      <a href="#" class="btn btn-primary" onclick="go('demo'); return false;">Schedule a Demo</a>
+    </section>
+
+    <!-- Newsletter & Follow-Back -->
+    <section class="newsletter-section">
+      <div class="container">
+        <div class="newsletter-inner">
+          <div class="newsletter-copy">
+            <h2>Stay in the Loop</h2>
+            <p>Get the latest AI insights, event announcements, and exclusive industry reports delivered straight to your inbox. No spam — just value.</p>
+          </div>
+          <div class="newsletter-form-wrap">
+            <div class="newsletter-row">
+              <input type="email" id="newsletterEmail" placeholder="your.email@company.com" aria-label="Email address">
+              <button onclick="subscribeNewsletter()">Subscribe →</button>
+            </div>
+            <div class="newsletter-success-msg" id="newsletterSuccess">✅ You're subscribed! Welcome to the AI-Solutions community.</div>
+            <div class="newsletter-followback">
+              <span>Follow us:</span>
+              <div class="follow-links">
+                <a href="#" class="follow-link linkedin" aria-label="Follow on LinkedIn">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.03-1.85-3.03-1.85 0-2.13 1.45-2.13 2.94v5.66H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.21 24 24 23.23 24 22.28V1.72C24 .77 23.21 0 22.22 0z"/></svg>
+                  LinkedIn
+                </a>
+                <a href="#" class="follow-link twitter" aria-label="Follow on X / Twitter">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                  X / Twitter
+                </a>
+                <a href="#" class="follow-link youtube" aria-label="Subscribe on YouTube">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 0 0 .5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 0 0 2.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+                  YouTube
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="logo" style="color: white;">
+              <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              AI-Solutions
+            </div>
+            <p>Premier artificial intelligence consultancy delivering enterprise-grade solutions that drive efficiency, reduce costs, and unlock new opportunities across industries.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#" onclick="go('services'); return false;">AI Virtual Assistant</a></li>
+              <li><a href="#" onclick="go('services'); return false;">Rapid Prototyping</a></li>
+              <li><a href="#" onclick="go('services'); return false;">Data Analytics</a></li>
+              <li><a href="#" onclick="go('services'); return false;">Cloud Architecture</a></li>
+              <li><a href="#" onclick="go('services'); return false;">Cybersecurity AI</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#" onclick="go('home'); return false;">About Us</a></li>
+              <li><a href="#" onclick="go('events'); return false;">Events</a></li>
+              <li><a href="#" onclick="go('gallery'); return false;">Gallery</a></li>
+              <li><a href="#" onclick="go('contact'); return false;">Contact</a></li>
+              <li><a href="#" onclick="go('admin'); return false;">Admin</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="#">Case Studies</a></li>
+              <li><a href="#">White Papers</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#">API Reference</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul class="footer-contact">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>10 Innovation Quarter<br>Sunderland SR1 1AA<br>United Kingdom</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <a href="/cdn-cgi/l/email-protection#f990979f96b99890d48a96958c8d9096978ad79a96d78c92"><span class="__cf_email__" data-cfemail="650c0b030a25040c48160a0910110c0a0b164b060a4b100e">[email&#160;protected]</span></a>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <a href="tel:+44191000000">+44 191 000 0000</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>2025 AI-Solutions. All rights reserved.</span>
+          <span>
+            <a href="#" style="color: inherit; margin-right: 16px;">Privacy Policy</a>
+            <a href="#" style="color: inherit; margin-right: 16px;">Terms of Service</a>
+            <a href="#" style="color: inherit;">Cookie Policy</a>
+          </span>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Services Page -->
+  <main class="page" id="page-services">
+    <div class="page-hero">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="#" onclick="go('home'); return false;">Home</a>
+          <span>/</span>
+          <span>Services</span>
+        </div>
+        <h1>AI Services</h1>
+        <p>Comprehensive artificial intelligence solutions designed to address real business challenges.</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="services-grid" id="servicesGridFull"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Events Page -->
+  <main class="page" id="page-events">
+    <div class="page-hero">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="#" onclick="go('home'); return false;">Home</a>
+          <span>/</span>
+          <span>Events</span>
+        </div>
+        <h1>Upcoming Events</h1>
+        <p>Join us at conferences, workshops, and networking events across the UK.</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="events-grid events-full-grid" id="eventsGridFull"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Gallery Page -->
+  <main class="page" id="page-gallery">
+    <div class="page-hero">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="#" onclick="go('home'); return false;">Home</a>
+          <span>/</span>
+          <span>Gallery</span>
+        </div>
+        <h1>Event Gallery</h1>
+        <p>Relive the moments from our conferences, workshops, and community events.</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Contact Page -->
+  <main class="page" id="page-contact">
+    <div class="page-hero">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="#" onclick="go('home'); return false;">Home</a>
+          <span>/</span>
+          <span>Contact</span>
+        </div>
+        <h1>Get in Touch</h1>
+        <p>Ready to explore how AI can transform your business? We'd love to hear from you.</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="contact-grid">
+          <div>
+            <div class="contact-info-card">
+              <h3>Contact Information</h3>
+              <div class="contact-item">
+                <div class="contact-item-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div>
+                  <h4>Visit Us</h4>
+                  <p>10 Innovation Quarter<br>Sunderland SR1 1AA<br>United Kingdom</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-item-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div>
+                  <h4>Call Us</h4>
+                  <p><a href="tel:+44191000000">+44 191 000 0000</a></p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-item-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div>
+                  <h4>Email Us</h4>
+                  <p><a href="/cdn-cgi/l/email-protection#6e070008012e0f07431d01021b1a0701001d400d01401b05"><span class="__cf_email__" data-cfemail="11787f777e5170783c627e7d6465787e7f623f727e3f647a">[email&#160;protected]</span></a></p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-item-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div>
+                  <h4>Office Hours</h4>
+                  <p>Monday - Friday: 9:00 AM - 6:00 PM GMT</p>
+                </div>
+              </div>
+              <div class="map-placeholder" style="height:350px;overflow:hidden">
+<iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-1.41%2C54.88%2C-1.34%2C54.93&amp;layer=mapnik" style="width:100%;height:100%;border:0"></iframe>
+</div><div style="display:none">
+                <a href="https://maps.google.com/?q=Sunderland+SR1+1AA" target="_blank" rel="noopener">View on Google Maps</a>
+              </div>
+              <div class="social-links">
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">Twitter</a>
+                <a href="#" class="social-link">YouTube</a>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="contact-form-card">
+              <h3>Send Us an Enquiry</h3>
+              <form id="contactForm" novalidate>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Full Name <span>*</span></label>
+                    <input type="text" name="name" placeholder="Enter your full name" required>
+                    <div class="error-text">Please enter your full name</div>
+                  </div>
+                  <div class="form-group">
+                    <label>Email Address <span>*</span></label>
+                    <input type="email" name="email" placeholder="your.email@company.com" required>
+                    <div class="error-text">Please enter a valid email address</div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Phone Number <span>*</span></label>
+                    <input type="tel" name="phone" placeholder="+44 7911 123456" required>
+                    <div class="error-text">Please enter your phone number</div>
+                  </div>
+                  <div class="form-group">
+                    <label>Company Name <span>*</span></label>
+                    <input type="text" name="company" placeholder="Your company name" required>
+                    <div class="error-text">Please enter your company name</div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Country <span>*</span></label>
+                    <select name="country" required>
+                      <option value="">Select your country</option>
+                      <option value="United Kingdom">United Kingdom</option>
+                      <option value="United States">United States</option>
+                      <option value="Canada">Canada</option>
+                      <option value="Australia">Australia</option>
+                      <option value="Germany">Germany</option>
+                      <option value="France">France</option>
+                      <option value="Netherlands">Netherlands</option>
+                      <option value="Sweden">Sweden</option>
+                      <option value="Norway">Norway</option>
+                      <option value="Denmark">Denmark</option>
+                      <option value="Finland">Finland</option>
+                      <option value="Ireland">Ireland</option>
+                      <option value="Spain">Spain</option>
+                      <option value="Italy">Italy</option>
+                      <option value="Portugal">Portugal</option>
+                      <option value="India">India</option>
+                      <option value="Japan">Japan</option>
+                      <option value="Singapore">Singapore</option>
+                      <option value="United Arab Emirates">United Arab Emirates</option>
+                      <option value="Other">Other</option>
+                    </select>
+                    <div class="error-text">Please select your country</div>
+                  </div>
+                  <div class="form-group">
+                    <label>Job Title</label>
+                    <input type="text" name="jobtitle" placeholder="Your job title">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>I'm Interested In <span>*</span></label>
+                  <select name="interest" required>
+                    <option value="">Select an option</option>
+                    <option value="AI Virtual Assistant">AI Virtual Assistant</option>
+                    <option value="Rapid Prototyping">Rapid Prototyping</option>
+                    <option value="Data Analytics">Data Analytics</option>
+                    <option value="Cloud Architecture">Cloud Architecture</option>
+                    <option value="Cybersecurity AI">Cybersecurity AI</option>
+                    <option value="Intelligent Automation">Intelligent Automation</option>
+                    <option value="NLP Solutions">NLP Solutions</option>
+                    <option value="Predictive Analytics">Predictive Analytics</option>
+                    <option value="Digital Transformation">Digital Transformation</option>
+                    <option value="Join an Event">Join an Event</option>
+                    <option value="General Enquiry">General Enquiry</option>
+                  </select>
+                  <div class="error-text">Please select an area of interest</div>
+                </div>
+                <div class="form-group">
+                  <label>Job Details</label>
+                  <textarea name="details" placeholder="Tell us about your project, challenges, or requirements..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Enquiry</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Demo Request Page -->
+  <main class="page" id="page-demo">
+    <div class="page-hero" style="background: linear-gradient(135deg, var(--teal) 0%, #0d7a5c 100%);">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="#" onclick="go('home'); return false;">Home</a>
+          <span>/</span>
+          <span>Book a Demo</span>
+        </div>
+        <h1>Book a Personalised Demo</h1>
+        <p>See exactly how AI-Solutions can transform your specific business — no generic slide deck, just real solutions for your real challenges.</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="contact-grid">
+          <div>
+            <div class="contact-info-card">
+              <h3>What to Expect</h3>
+              <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:28px;">
+                <div style="display:flex;gap:16px;align-items:flex-start;">
+                  <div style="background:var(--navy);color:white;font-weight:800;font-size:0.8125rem;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">01</div>
+                  <div><h4 style="color:var(--navy);margin-bottom:4px;">Discovery Call (30 min)</h4><p style="font-size:0.875rem;">We learn about your business, challenges, and goals.</p></div>
+                </div>
+                <div style="display:flex;gap:16px;align-items:flex-start;">
+                  <div style="background:var(--navy);color:white;font-weight:800;font-size:0.8125rem;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">02</div>
+                  <div><h4 style="color:var(--navy);margin-bottom:4px;">Tailored Demo (45 min)</h4><p style="font-size:0.875rem;">A live walkthrough of relevant AI solutions for your use case.</p></div>
+                </div>
+                <div style="display:flex;gap:16px;align-items:flex-start;">
+                  <div style="background:var(--navy);color:white;font-weight:800;font-size:0.8125rem;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">03</div>
+                  <div><h4 style="color:var(--navy);margin-bottom:4px;">Q&amp;A &amp; Next Steps (15 min)</h4><p style="font-size:0.875rem;">Your questions answered with a clear proposal timeline.</p></div>
+                </div>
+              </div>
+              <div style="background:rgba(29,158,117,0.08);border:1px solid rgba(29,158,117,0.2);border-radius:var(--radius);padding:20px;display:flex;gap:16px;align-items:flex-start;">
+                <div style="font-size:1.75rem;">🎯</div>
+                <div><strong style="color:var(--navy);display:block;margin-bottom:4px;">No Pressure, No Obligation</strong><p style="font-size:0.875rem;">Our demos are informational — you'll leave with value regardless of whether you proceed.</p></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="contact-form-card">
+              <h3>Request Your Demo</h3>
+              <p style="color:var(--text-muted);margin-bottom:24px;font-size:0.9375rem;">Fill in your details and we'll be in touch within one business day.</p>
+              <form id="demoForm" novalidate>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Full Name <span>*</span></label>
+                    <input type="text" name="name" placeholder="Your full name" required>
+                    <div class="error-text">Please enter your full name</div>
+                  </div>
+                  <div class="form-group">
+                    <label>Work Email <span>*</span></label>
+                    <input type="email" name="email" placeholder="you@company.com" required>
+                    <div class="error-text">Please enter a valid email address</div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Phone Number <span>*</span></label>
+                    <input type="tel" name="phone" placeholder="+44 7911 123456" required>
+                    <div class="error-text">Please enter your phone number</div>
+                  </div>
+                  <div class="form-group">
+                    <label>Company Name <span>*</span></label>
+                    <input type="text" name="company" placeholder="Your company" required>
+                    <div class="error-text">Please enter your company name</div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Country <span>*</span></label>
+                    <select name="country" required>
+                      <option value="">Select your country</option>
+                      <option>United Kingdom</option><option>United States</option><option>Canada</option>
+                      <option>Australia</option><option>Germany</option><option>France</option>
+                      <option>Netherlands</option><option>Sweden</option><option>Norway</option>
+                      <option>Denmark</option><option>Finland</option><option>Ireland</option>
+                      <option>Spain</option><option>Italy</option><option>Portugal</option>
+                      <option>India</option><option>Japan</option><option>Singapore</option>
+                      <option>United Arab Emirates</option><option>Other</option>
+                    </select>
+                    <div class="error-text">Please select your country</div>
+                  </div>
+                  <div class="form-group">
+                    <label>Job Title</label>
+                    <input type="text" name="jobtitle" placeholder="Your job title">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>What would you like to see demoed?</label>
+                  <textarea name="details" rows="4" placeholder="Tell us about your business challenge or the service(s) you're interested in..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">🚀 Request My Demo</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Receipt Page -->
+  <main class="page" id="page-receipt">
+    <section class="section">
+      <div class="container">
+        <div class="receipt-container">
+          <div class="receipt-header">
+            <div>
+              <div class="receipt-logo">AI-Solutions</div>
+              <p style="margin-top: 8px; color: var(--text-muted);">10 Innovation Quarter, Sunderland SR1 1AA</p>
+            </div>
+            <div style="text-align: right;">
+              <h1 style="font-size: 1.5rem; margin-bottom: 8px;">Enquiry Receipt</h1>
+              <p style="color: var(--text-muted);" id="receiptDate"></p>
+            </div>
+          </div>
+          <div class="receipt-ref">
+            <span>Your Reference Number</span>
+            <strong id="receiptRef">AIS-2025-001</strong>
+          </div>
+          <div class="receipt-details" id="receiptDetails"></div>
+          <div class="receipt-actions">
+            <button class="btn btn-secondary" onclick="window.print()">Print Receipt</button>
+            <a href="#" class="btn btn-blue" onclick="go('tracker'); return false;">Track Your Enquiry</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Tracker Page -->
+  <main class="page" id="page-tracker">
+    <div class="page-hero">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="#" onclick="go('home'); return false;">Home</a>
+          <span>/</span>
+          <span>Track Enquiry</span>
+        </div>
+        <h1>Track Your Enquiry</h1>
+        <p>Enter your reference number to check the status of your enquiry.</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="tracker-container">
+          <div class="tracker-search">
+            <input type="text" id="trackerInput" placeholder="Enter your reference (e.g., AIS-2025-001)">
+            <button class="btn btn-blue" onclick="trackEnquiry()">Track</button>
+          </div>
+          <div id="trackerResult"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Admin Login Page -->
+  <main class="page" id="page-admin">
+    <div class="admin-login" id="adminLogin">
+      <div class="login-card">
+        <h2>Admin Portal</h2>
+        <p>Sign in to access the management dashboard</p>
+        <div class="login-error" id="loginError">Invalid username or password. Please try again.</div>
+        <form onsubmit="adminLogin(event)">
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" id="adminUsername" placeholder="Enter username" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="adminPassword" placeholder="Enter password" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In</button>
+        </form>
+        <div class="demo-credentials">
+          <strong>Demo Credentials:</strong><br>
+          Username: admin | Password: admin123
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-container hidden" id="adminDashboard">
+      <aside class="admin-sidebar">
+        <div class="admin-nav-item active" data-section="dashboard" onclick="showAdminSection('dashboard')">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span>Dashboard</span>
+        </div>
+        <div class="admin-nav-item" data-section="enquiries" onclick="showAdminSection('enquiries')">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span>Enquiries</span>
+        </div>
+        <div class="admin-nav-item" data-section="events" onclick="showAdminSection('events')">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>Events</span>
+        </div>
+        <div class="admin-nav-item" data-section="services" onclick="showAdminSection('services')">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>Services</span>
+        </div>
+        <div class="admin-nav-item" data-section="cms" onclick="showAdminSection('cms')">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          <span>CMS</span>
+        </div>
+
+        <div class="admin-nav-item" data-section="email" onclick="showAdminSection('email')">
+          <span>✉ Email Center</span>
+        </div>
+        <div class="admin-nav-item" data-section="settings" onclick="showAdminSection('settings')">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg>
+          <span>Settings</span>
+        </div>
+        <div class="admin-nav-item admin-logout-btn" onclick="adminLogout()">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span>Logout</span>
+        </div>
+      </aside>
+      <div class="admin-main">
+        <!-- Dashboard Section -->
+        <div id="admin-dashboard">
+          <!-- Top bar -->
+          <div class="admin-header">
+            <div>
+              <h2>Dashboard</h2>
+              <p style="color:var(--text-muted);font-size:0.875rem;margin-top:2px;" id="dashLastUpdated">Loading…</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center;">
+              <div class="connection-status connected" id="connectionStatus">
+                <span class="connection-dot"></span>
+                <span id="connectionText">MongoDB Connected</span>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="loadAdminData()">↻ Refresh</button>
+              <button class="btn btn-secondary btn-sm" onclick="exportCsv()">Export CSV</button>
+            </div>
+          </div>
+
+          <!-- KPI row -->
+          <div class="dash-kpi-row" id="adminKpis"></div>
+
+          <!-- Row 2: bar chart + donut + activity feed -->
+          <div class="dash-row-3">
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <h3>Monthly Enquiries</h3>
+                <span class="chart-subtitle" id="monthlyTrendLabel"></span>
+              </div>
+              <div class="bar-chart" id="barChart"></div>
+            </div>
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <h3>By Status</h3>
+              </div>
+              <div class="donut-wrap">
+                <svg id="donutSvg" viewBox="0 0 120 120" width="140" height="140"></svg>
+                <div class="donut-center" id="donutCenter"></div>
+              </div>
+              <div class="pie-legend" id="donutLegend"></div>
+            </div>
+            <div class="chart-card activity-card">
+              <div class="chart-card-header">
+                <h3>Live Activity</h3>
+              </div>
+              <div class="activity-feed" id="activityFeed"></div>
+            </div>
+          </div>
+
+          <!-- Row 3: service interest bars + country heatmap -->
+          <div class="dash-row-2" style="margin-bottom:24px;">
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <h3>Service Interest</h3>
+                <span class="chart-subtitle">Enquiries per service</span>
+              </div>
+              <div id="serviceInterestBars"></div>
+            </div>
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <h3>Top Countries</h3>
+                <span class="chart-subtitle">Enquiry volume</span>
+              </div>
+              <div id="countryBars"></div>
+            </div>
+          </div>
+
+          <!-- Row 4: recent enquiries full table + upcoming events mini -->
+          <div class="dash-row-2">
+            <div class="chart-card" style="overflow-x:auto;">
+              <div class="chart-card-header" style="margin-bottom:16px;">
+                <h3>Recent Enquiries</h3>
+                <button class="btn btn-secondary btn-sm" onclick="showAdminSection('enquiries')">View All →</button>
+              </div>
+              <table class="admin-table" id="recentEnquiriesTable">
+                <thead><tr><th>Ref</th><th>Name</th><th>Company</th><th>Interest</th><th>Status</th><th>Date</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div class="chart-card">
+              <div class="chart-card-header" style="margin-bottom:16px;">
+                <h3>Upcoming Events</h3>
+                <button class="btn btn-secondary btn-sm" onclick="showAdminSection('events')">View All →</button>
+              </div>
+              <div id="upcomingEventsList"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enquiries Section -->
+        <div id="admin-enquiries" class="hidden">
+          <div class="admin-header">
+            <h2>Enquiries</h2>
+          </div>
+          <div class="enquiries-header">
+            <select class="filter-dropdown" id="statusFilter" onchange="filterEnquiries()">
+              <option value="">All Statuses</option>
+              <option value="New">New</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Pending">Pending</option>
+              <option value="Closed">Closed</option>
+            </select>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <span class="enquiry-count" id="enquiryCount">0 enquiries</span>
+              <button class="btn btn-secondary btn-sm" onclick="exportCsv()">Export CSV</button>
+            </div>
+          </div>
+          <div style="background: white; border-radius: 8px; box-shadow: var(--shadow); overflow-x: auto;">
+            <table class="admin-table" id="enquiriesTable">
+              <thead><tr><th>Ref</th><th>Name</th><th>Company</th><th>Country</th><th>Interest</th><th>Date</th><th>Status</th><th>Change Status</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Admin Events Section -->
+        <div id="admin-events" class="hidden">
+          <div class="admin-header">
+            <h2>Events</h2>
+          </div>
+          <div style="background: white; border-radius: 8px; box-shadow: var(--shadow); overflow-x: auto;">
+            <table class="admin-table" id="adminEventsTable">
+              <thead><tr><th>Title</th><th>Date</th><th>Location</th><th>Type</th><th>Registrations</th><th>Status</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Admin Services Section -->
+        <div id="admin-services" class="hidden">
+          <div class="admin-header">
+            <h2>Services</h2>
+          </div>
+          <div style="background: white; border-radius: 8px; box-shadow: var(--shadow); overflow-x: auto;">
+            <table class="admin-table" id="adminServicesTable">
+              <thead><tr><th>Service</th><th>Timeline</th><th>Enquiries</th><th>Status</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- CMS Section -->
+        <div id="admin-cms" class="hidden">
+          <div class="admin-header"><h2>CMS — Site Content</h2></div>
+          <div style="background: white; border-radius: 12px; box-shadow: var(--shadow); padding: 32px; max-width: 800px;">
+            <p style="color: var(--text-muted); margin-bottom: 28px;">Edit the public-facing content displayed on your website.</p>
+            <div class="cms-section-label">🏠 Homepage</div>
+            <div class="form-group">
+              <label>Hero Title</label>
+              <input type="text" id="cmsHeroTitle" value="Transform Your Business with Intelligent AI Solutions">
+            </div>
+            <div class="form-group">
+              <label>Hero Subtitle</label>
+              <textarea id="cmsHeroSubtitle" rows="3">AI-Solutions delivers enterprise-grade artificial intelligence services that drive efficiency, reduce costs, and unlock new opportunities for growth.</textarea>
+            </div>
+            <div class="form-group">
+              <label>Primary CTA Button Text</label>
+              <input type="text" id="cmsCtaText" value="Book a Free Demo">
+            </div>
+            <div class="cms-section-label">📞 Contact Details</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="cmsEmail" value="info@ai-solutions.co.uk">
+              </div>
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="text" id="cmsPhone" value="+44 191 000 0000">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Address</label>
+              <input type="text" id="cmsAddress" value="10 Innovation Quarter, Sunderland SR1 1AA, United Kingdom">
+            </div>
+            <div class="cms-section-label">🔻 Footer</div>
+            <div class="form-group">
+              <label>Footer Tagline</label>
+              <input type="text" id="cmsFooterTagline" value="Building the future of enterprise AI.">
+            </div>
+            <div style="display:flex; gap:12px; align-items:center; margin-top:8px;">
+              <button class="btn btn-primary" onclick="saveCms()">Save Changes</button>
+              <span id="cmsSaveMsg" style="color:var(--teal); font-weight:600; display:none;">✓ Saved successfully</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Section -->
+
+        <div id="admin-email" class="hidden">
+          <div class="admin-header"><h2>Email Center</h2></div>
+          <div class="chart-card">
+            <label>Client Email</label>
+            <input id="emailTo" class="form-control" placeholder="client@email.com">
+            <label>Subject</label>
+            <input id="emailSubject" class="form-control" value="AI-Solutions Reply">
+            <label>Message</label>
+            <textarea id="emailMessage" class="form-control" rows="6"></textarea>
+            <button class="btn btn-primary" onclick="sendAdminEmail()">Send Email</button>
+          </div>
+        </div>
+        <div id="admin-settings" class="hidden">
+          <div class="admin-header"><h2>Settings</h2></div>
+          <div style="background: white; border-radius: 12px; box-shadow: var(--shadow); padding: 32px; max-width: 700px;">
+            <div class="cms-section-label">🌐 General</div>
+            <div class="form-group">
+              <label>Site Name</label>
+              <input type="text" id="settSiteName" value="AI-Solutions">
+            </div>
+            <div class="form-group">
+              <label>Timezone</label>
+              <select id="settTimezone">
+                <option value="Europe/London" selected>Europe/London</option>
+                <option value="America/New_York">America/New_York</option>
+                <option value="America/Chicago">America/Chicago</option>
+                <option value="America/Los_Angeles">America/Los_Angeles</option>
+                <option value="Asia/Singapore">Asia/Singapore</option>
+                <option value="Australia/Sydney">Australia/Sydney</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Default Enquiry Status</label>
+              <select id="settDefaultStatus">
+                <option value="New" selected>New</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Pending">Pending</option>
+              </select>
+            </div>
+            <div class="cms-section-label">🔔 Features</div>
+            <div class="settings-toggle-row">
+              <div>
+                <div class="settings-toggle-label">Maintenance Mode</div>
+                <div class="settings-toggle-desc">Put the site in maintenance mode (shows holding page)</div>
+              </div>
+              <label class="toggle-switch"><input type="checkbox" id="settMaintenance"><span class="toggle-slider"></span></label>
+            </div>
+            <div class="settings-toggle-row">
+              <div>
+                <div class="settings-toggle-label">Allow Event Registrations</div>
+                <div class="settings-toggle-desc">Enable the event registration form on the Events page</div>
+              </div>
+              <label class="toggle-switch"><input type="checkbox" id="settRegistrations" checked><span class="toggle-slider"></span></label>
+            </div>
+            <div class="settings-toggle-row">
+              <div>
+                <div class="settings-toggle-label">Email Notifications</div>
+                <div class="settings-toggle-desc">Send email alerts when a new enquiry is submitted</div>
+              </div>
+              <label class="toggle-switch"><input type="checkbox" id="settEmails" checked><span class="toggle-slider"></span></label>
+            </div>
+            <div style="display:flex; gap:12px; align-items:center; margin-top:24px;">
+              <button class="btn btn-primary" onclick="saveSettings()">Save Settings</button>
+              <span id="settSaveMsg" style="color:var(--teal); font-weight:600; display:none;">✓ Saved successfully</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Service Detail Modal -->
+  <div class="service-detail-modal" id="serviceModal">
+    <div class="modal-backdrop" onclick="closeServiceModal()"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeServiceModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="modal-icon" id="modalIcon"></div>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+      <div class="modal-features">
+        <h3>Key Features</h3>
+        <ul id="modalFeatures"></ul>
+      </div>
+      <div class="use-cases">
+        <div class="use-case">
+          <h4>Industry Use Case</h4>
+          <p id="modalUseCaseIndustry"></p>
+        </div>
+        <div class="use-case">
+          <h4>Expected Outcome</h4>
+          <p id="modalUseCaseOutcome"></p>
+        </div>
+      </div>
+      <div class="modal-pricing">
+        <div class="modal-pricing-item">
+          <div class="modal-pricing-label">Timeline</div>
+          <div class="modal-pricing-value" id="modalTimeline"></div>
+        </div>
+      </div>
+      <button class="btn btn-blue" style="width: 100%; margin-bottom: 16px;" onclick="closeServiceModal(); go('demo');">Request a Demo</button>
+      <div class="related-services">
+        <h3>Related Services</h3>
+        <div class="related-grid" id="relatedServices"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Registration Modal -->
+  <div class="event-modal" id="eventModal">
+    <div class="modal-backdrop" onclick="closeEventModal()"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeEventModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div id="eventModalContent"></div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="lightbox-content">
+      <img id="lightboxImage" src="" alt="">
+      <div class="lightbox-info">
+        <h2 id="lightboxTitle"></h2>
+        <div class="meta">
+          <span id="lightboxDate"></span>
+          <span id="lightboxLocation"></span>
+        </div>
+        <p id="lightboxDescription"></p>
+        <div class="lightbox-tags" id="lightboxTags"></div>
+        <button class="btn btn-blue" onclick="go('events'); closeLightbox();">Attend Next Event</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chatbot -->
+  <div class="chatbot-btn" id="chatbotBtn" onclick="toggleChatbot()">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+  </div>
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+      <div>
+        <h4>Aria - AI Assistant</h4>
+        <div class="chatbot-status">Online</div>
+      </div>
+      <button class="chatbot-minimize" onclick="toggleChatbot()">--</button>
+    </div>
+    <div class="chatbot-messages" id="chatMessages">
+      <div class="chat-message bot">Hello! I'm Aria, your AI assistant at AI-Solutions. I can help you learn about our services, pricing, events, or connect you with our team. What would you like to know?</div>
+    </div>
+    <div class="chatbot-footer">
+      <a href="#" onclick="go('contact'); return false;">Talk to a human</a>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="if(event.key==='Enter')sendMessage()">
+      <button class="chatbot-send" onclick="sendMessage()">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Install Banner -->
+  <div class="install-banner" id="installBanner">
+    <span>Install AI-Solutions for faster access</span>
+    <button onclick="installPWA()">Install</button>
+    <span class="install-dismiss" onclick="dismissInstall()">Dismiss</span>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Configuration
+    const API = 'http://localhost:3000/api';
+
+    // State
+    const state = {
+      enquiries: [],
+      isOnline: true,
+      adminLoggedIn: false,
+      currentAdminSection: 'dashboard'
+    };
+
+    // Services Data
+    const services = [
+      {
+        id: 'virtual-assistant',
+        title: 'AI Virtual Assistant',
+        shortDesc: 'Intelligent 24/7 conversational support that integrates with your existing systems.',
+        description: 'Our AI Virtual Assistant provides round-the-clock intelligent conversational support for your customers and employees. Built on advanced large language models and trained on your company-specific data, it handles complex multi-turn queries, integrates seamlessly with CRM, ERP, and helpdesk systems, and continuously learns from interactions to improve response quality over time.',
+        features: ['Natural language understanding across 30+ languages', 'CRM, ERP, and helpdesk integration', 'Custom training on your brand voice and knowledge base', 'Multi-channel deployment (web, mobile, Slack, Teams)', 'Analytics dashboard with conversation insights', 'Escalation to human agents when needed'],
+        useCase: { industry: 'Healthcare provider handling 10,000+ patient queries monthly', outcome: '75% reduction in call centre costs, 24/7 patient support coverage' },
+        price: 'From 499/month',
+        timeline: '2-4 weeks deployment',
+        color: '#185FA5',
+        icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M16 14v2a4 4 0 0 1-8 0v-2M12 14v6M8 20h8"/></svg>'
+      },
+      {
+        id: 'rapid-prototyping',
+        title: 'Rapid Prototyping',
+        shortDesc: 'From concept to working AI prototype in just 5-10 days.',
+        description: 'Our Rapid Prototyping service accelerates your AI journey from idea to proof-of-concept. Working directly with your team, our engineers develop a working AI prototype for your specific business problem. This service is ideal for investment cases, internal stakeholder demonstrations, or validating market fit before committing to full-scale development.',
+        features: ['Architecture review and technical assessment', '5-10 day delivery sprint with daily standups', 'Demo-ready build by end of engagement', 'Full source code and documentation', 'Knowledge transfer session included', 'Option to extend into full production build'],
+        useCase: { industry: 'Logistics company validating demand forecasting for board presentation', outcome: 'Prototype delivered in 7 days, secured 2M funding for full implementation' },
+        price: 'From 4,999/project',
+        timeline: '5-10 days',
+        color: '#1D9E75',
+        icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>'
+      },
+      {
+        id: 'data-analytics',
+        title: 'Data Analytics',
+        shortDesc: 'Real-time dashboards, predictive modelling, and actionable business intelligence.',
+        description: 'Transform your raw data into strategic assets with our comprehensive Data Analytics solutions. We build real-time dashboards, implement predictive models for demand forecasting and anomaly detection, and create automated reporting infrastructure that integrates with your existing data warehouses and BI tools like Power BI and Tableau.',
+        features: ['Real-time data dashboards with drill-down capabilities', 'Predictive modelling for demand, churn, and risk', 'Anomaly detection for operational monitoring', 'Integration with existing data warehouses', 'Power BI and Tableau compatible outputs', 'Self-service analytics training for your team'],
+        useCase: { industry: 'Retail chain with 200+ stores analysing customer purchase patterns', outcome: '34% reduction in inventory costs, 22% improvement in forecast accuracy' },
+        price: 'From 1,299/month',
+        timeline: '3-6 weeks initial setup',
+        color: '#639922',
+        icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>'
+      },
+      {
+        id: 'cloud-architecture',
+        title: 'Cloud Architecture',
+        shortDesc: 'Multi-cloud AI deployments on AWS, Azure, and GCP with cost optimisation.',
+        description: 'Our Cloud Architecture service designs and implements enterprise-grade AI infrastructure across major cloud platforms. We specialise in multi-cloud strategies that maximise flexibility and resilience, containerised ML inference pipelines using Kubernetes, infrastructure-as-code with Terraform, and comprehensive cost governance frameworks.',
+        features: ['AWS, Azure, and GCP multi-cloud strategies', 'Containerised ML inference with Kubernetes', 'Infrastructure-as-code (Terraform, Pulumi)', 'Cost optimisation and governance frameworks', 'Auto-scaling for production workloads', 'Disaster recovery and business continuity planning'],
+        useCase: { industry: 'Financial services firm requiring HIPAA-compliant cloud infrastructure', outcome: '40% reduction in cloud costs, 99.99% uptime achieved' },
+        price: 'From 2,999/month',
+        timeline: '4-8 weeks design and migration',
+        color: '#042C53',
+        icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>'
+      },
+      {
+        id: 'cybersecurity',
+        title: 'Cybersecurity AI',
+        shortDesc: 'ML-powered threat detection 40x faster than traditional rule-based systems.',
+        description: 'Strengthen your security posture with our AI-powered Cybersecurity solutions. Using advanced machine learning models, we identify network threats and anomalies at speeds far exceeding traditional rule-based systems. Our automated incident triage reduces analyst workload, while seamless SIEM integration ensures minimal disruption to your existing operations.',
+        features: ['Real-time network threat detection and blocking', 'Behavioural anomaly identification', 'Automated incident triage and prioritisation', 'SIEM integration (Splunk, QRadar, Microsoft Sentinel)', '40x faster detection than rule-based systems', 'Continuous model training and improvement'],
+        useCase: { industry: 'Critical infrastructure operator monitoring industrial control systems', outcome: 'Prevented 3 major security incidents in first year, 89% reduction in false positives' },
+        price: 'From 3,499/month',
+        timeline: '6-10 weeks deployment',
+        color: '#dc2626',
+        icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>'
+      },
+      {
+        id: 'automation',
+        title: 'Intelligent Automation',
+        shortDesc: 'End-to-end workflow automation combining RPA with AI decision-making.',
+        description: 'Revolutionise your operational efficiency with Intelligent Automation that combines robotic process automation (RPA) with AI-powered decision-making. Our solutions automate complex, multi-step workflows across enterprise systems including SAP, Salesforce, and Microsoft 365, freeing your team to focus on high-value activities.',
+        features: ['End-to-end workflow design and implementation', 'RPA combined with AI decision nodes', 'SAP, Salesforce, Microsoft 365 integration', 'Process mining and optimisation', 'Human-in-the-loop for exception handling', 'Comprehensive audit trails and compliance reporting'],
+        useCase: { industry: 'Insurance company automating claims processing across multiple systems', outcome: '65% reduction in processing time, 50% decrease in manual errors' },
+        price: 'From 1,999/month',
+        timeline: '4-8 weeks per process',
+        color: '#7c3aed',
+        icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y1="14"/></svg>'
+      },
+      {
+        id: 'nlp',
+        title: 'NLP Solutions',
+        shortDesc: 'Intent classification, document intelligence, and multilingual support.',
+        description: 'Unlock the power of human language with our Natural Language Processing solutions. From intent classification and entity extraction to document intelligence and RAG architectures, we build systems that understand, generate, and derive insights from text. Our solutions support 30+ languages, making them ideal for global enterprises.',
+        features: ['Intent classification for chatbots and virtual assistants', 'Named entity recognition and extraction', 'Document intelligence and text summarisation', 'RAG (Retrieval-Augmented Generation) architectures', 'Multilingual support for 30+ languages', 'Sentiment analysis and opinion mining'],
+        useCase: { industry: 'Legal firm processing thousands of contracts and case documents', outcome: '80% reduction in document review time, improved accuracy in case preparation' },
+        price: 'From 1,799/month',
+        timeline: '3-6 weeks',
+        color: '#0891b2',
+        icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>'
+      },
+      {
+        id: 'predictive-analytics',
+        title: 'Predictive Analytics',
+        shortDesc: 'Demand forecasting, churn prediction, and financial modelling with explainable AI.',
+        description: 'Anticipate future trends and make data-driven decisions with our Predictive Analytics solutions. We implement sophisticated forecasting models for demand planning, customer churn prediction, and financial modelling. Every prediction comes with explainability features that help stakeholders understand the reasoning behind forecasts.',
+        features: ['Demand forecasting for inventory and resource planning', 'Customer churn prediction and prevention', 'Financial modelling and scenario analysis', 'Time-series analysis for seasonal patterns', 'Explainable AI outputs for stakeholder trust', 'Integration with existing BI and planning systems'],
+        useCase: { industry: 'Manufacturing company predicting equipment maintenance needs', outcome: '23% reduction in unplanned downtime, extended equipment lifespan by 2 years' },
+        price: 'From 1,999/month',
+        timeline: '4-8 weeks',
+        color: '#ea580c',
+        icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>'
+      },
+      {
+        id: 'digital-transformation',
+        title: 'Digital Transformation',
+        shortDesc: 'Full organisational AI adoption programmes with change management.',
+        description: 'Comprehensive AI transformation programmes that go beyond technology implementation. We guide organisations through every stage of AI adoption, from strategy and use case identification through to technology deployment and staff training. Our structured change management approach ensures sustainable transformation and lasting competitive advantage.',
+        features: ['AI strategy and roadmap development', 'Use case prioritisation and business case building', 'Phased delivery over 3-18 months', 'Staff training and change management', 'Governance frameworks and ethical guidelines', 'Executive alignment and board reporting'],
+        useCase: { industry: 'Public sector organisation implementing council-wide AI adoption', outcome: '40% improvement in service delivery times, 2.5M annual savings identified' },
+        price: 'From 9,999/month',
+        timeline: '3-18 months programme',
+        color: '#4f46e5',
+        icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>'
+      }
+    ];
+
+    // Events Data
+    const events = [
+      {
+        id: 1,
+        title: 'AI Innovation Summit 2025',
+        date: '2025-03-15',
+        day: '15',
+        month: 'Mar',
+        location: 'ExCeL London',
+        type: 'Conference',
+        description: 'Join 500+ AI leaders for a full-day summit exploring the future of enterprise artificial intelligence. AI-Solutions will deliver two keynote sessions on responsible AI deployment and the ROI of intelligent automation. Exhibition stands, networking lunch, and an evening awards ceremony included.',
+        registrations: 387
+      },
+      {
+        id: 2,
+        title: 'Rapid Prototyping Bootcamp',
+        date: '2025-04-02',
+        day: '02',
+        month: 'Apr',
+        location: 'Sunderland HQ',
+        type: 'Workshop',
+        description: 'A hands-on two-day bootcamp where your technical team works directly with AI-Solutions engineers to build a working AI prototype for your specific business problem. Max 12 participants. Includes architecture review, code sessions, and a demo-ready build by day two.',
+        registrations: 9
+      },
+      {
+        id: 3,
+        title: 'Data Analytics Masterclass',
+        date: '2025-04-28',
+        day: '28',
+        month: 'Apr',
+        location: 'Leeds City Conference Centre',
+        type: 'Masterclass',
+        description: 'An intensive full-day session covering predictive modelling, real-time reporting infrastructure, and dashboard design best practices. Suitable for analysts, data engineers, and product managers. Includes take-home exercises and a 30-day follow-up Q&A access.',
+        registrations: 64
+      },
+      {
+        id: 4,
+        title: 'Cybersecurity AI Forum',
+        date: '2025-05-14',
+        day: '14',
+        month: 'May',
+        location: 'The Sage Gateshead',
+        type: 'Forum',
+        description: 'A specialist half-day forum on AI-powered threat detection, anomaly detection models, and secure ML pipeline design. Speakers from NCSC, Darktrace, and AI-Solutions engineering. CPD-accredited, limited to 150 security professionals.',
+        registrations: 112
+      },
+      {
+        id: 5,
+        title: 'NLP and Conversational AI Workshop',
+        date: '2025-06-05',
+        day: '05',
+        month: 'Jun',
+        location: 'Edinburgh International Conference Centre',
+        type: 'Workshop',
+        description: 'A technical deep-dive into natural language processing for enterprise applications. Topics: intent classification, entity extraction, RAG architectures, and chatbot evaluation frameworks. Hands-on with real datasets throughout the day.',
+        registrations: 45
+      },
+      {
+        id: 6,
+        title: 'Digital Transformation Summit',
+        date: '2025-06-19',
+        day: '19',
+        month: 'Jun',
+        location: 'Manchester Central',
+        type: 'Conference',
+        description: 'A flagship full-day conference for C-suite and VP-level leaders planning large-scale digital transformation. Panel discussions, boardroom briefings, and a live showcase of AI-Solutions full enterprise platform. Invitation-only VIP breakfast at 8am.',
+        registrations: 198
+      },
+      {
+        id: 7,
+        title: 'Cloud Architecture Deep Dive',
+        date: '2025-07-10',
+        day: '10',
+        month: 'Jul',
+        location: 'Newcastle Civic Centre',
+        type: 'Technical Session',
+        description: 'A full-day technical programme for architects and engineers covering multi-cloud AI deployments, containerised ML inference, and cost governance frameworks. Live infrastructure-as-code demonstrations with AWS, Azure, and GCP. Attendees receive a full reference architecture pack.',
+        registrations: 52
+      },
+      {
+        id: 8,
+        title: 'Women in AI Leadership Forum',
+        date: '2025-08-06',
+        day: '06',
+        month: 'Aug',
+        location: 'The Barbican London',
+        type: 'Forum',
+        description: 'A networking and panel event celebrating women leading AI innovation across the UK. Six senior AI leaders share insights on inclusive team building, bias mitigation in models, and career advancement in AI. Keynote from Dr. Sara Mendes, Chief AI Officer at TechCorp UK.',
+        registrations: 289
+      },
+      {
+        id: 9,
+        title: 'AI-Solutions Client Open Day',
+        date: '2025-09-18',
+        day: '18',
+        month: 'Sep',
+        location: 'Sunderland HQ',
+        type: 'Open Day',
+        description: 'An exclusive event for existing and prospective clients to tour the AI-Solutions innovation lab, meet the engineering and delivery teams, and see live demonstrations of all nine service lines. Lunch and networking included. Free to attend - registration required.',
+        registrations: 67
+      }
+    ];
+
+    // Gallery Data
+    const gallery = [
+      { id: 1, title: 'AI Innovation Summit 2024', date: '14 March 2024', location: 'London', image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop', description: 'AI-Solutions hosted 400+ delegates at the AI Innovation Summit in London. Keynote speakers from Google DeepMind, Microsoft, and OpenAI discussed enterprise AI adoption. Live product demos and roundtable sessions produced 47 new client partnerships.', tags: ['AI', 'Keynote', 'Networking'] },
+      { id: 2, title: 'Digital Transformation Conference', date: '22 May 2024', location: 'Manchester', image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&auto=format&fit=crop', description: 'Over 600 business leaders gathered to explore digital transformation strategy. AI-Solutions showcased its Intelligent Automation suite with live demos across healthcare, logistics, and finance verticals. Three enterprise case studies were presented live on stage.', tags: ['Transformation', 'Enterprise', 'Demo'] },
+      { id: 3, title: 'Product Demo Day', date: '10 June 2024', location: 'Sunderland HQ', image: 'https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=800&auto=format&fit=crop', description: 'Clients and prospects visited AI-Solutions HQ for a hands-on AI Virtual Assistant demo day across 8 industry verticals. Participants tested the platform live with real business scenarios and met the full engineering team.', tags: ['Demo', 'Product', 'Hands-on'] },
+      { id: 4, title: 'NLP and Language AI Workshop', date: '3 July 2024', location: 'Edinburgh', image: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&auto=format&fit=crop', description: 'A technical workshop for data scientists covering sentiment analysis, document intelligence, and conversational AI design patterns using real enterprise datasets.', tags: ['NLP', 'Workshop', 'Technical'] },
+      { id: 5, title: 'Client Strategy Roundtable', date: '19 August 2024', location: 'Birmingham', image: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&auto=format&fit=crop', description: 'Senior executives from 20 client organisations joined AI-Solutions for a quarterly strategy session on AI governance, ROI measurement, and 2025 roadmap planning. Produced a shared industry white paper.', tags: ['Strategy', 'Executive', 'Governance'] },
+      { id: 6, title: 'Cybersecurity and AI Forum', date: '5 September 2024', location: 'London', image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&auto=format&fit=crop', description: 'AI-Solutions partnered with the UK Cyber Security Council to demonstrate how ML models identify network threats 40x faster than traditional rule-based systems. 200 security professionals attended.', tags: ['Cybersecurity', 'AI', 'Forum'] },
+      { id: 7, title: 'Team Culture Day', date: '12 October 2024', location: 'Sunderland', image: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=800&auto=format&fit=crop', description: 'The full 80-person AI-Solutions team gathered for values workshops, achievement celebrations, and collaborative planning sessions reinforcing the companys inclusive, innovation-first culture.', tags: ['Culture', 'Team', 'Inclusion'] },
+      { id: 8, title: 'Data Analytics Masterclass', date: '28 October 2024', location: 'Leeds', image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop', description: '80 participants worked through hands-on exercises in predictive modelling, dashboard design, and real-time reporting infrastructure using anonymised enterprise datasets and live BI tools.', tags: ['Analytics', 'Masterclass', 'Data'] },
+      { id: 9, title: 'Cloud Architecture Deep Dive', date: '14 November 2024', location: 'Newcastle', image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=800&auto=format&fit=crop', description: 'Technical architects explored multi-cloud AI deployment strategies, cost optimisation patterns, and live infrastructure-as-code demonstrations. Attendees received a full reference architecture pack.', tags: ['Cloud', 'Architecture', 'Infrastructure'] },
+      { id: 10, title: 'Women in AI Panel', date: '27 November 2024', location: 'London', image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&auto=format&fit=crop', description: 'Six senior AI leaders discussed bias in AI systems, career journeys, and strategies for building diverse engineering teams. 350 professionals attended this landmark co-sponsored event.', tags: ['Diversity', 'AI', 'Panel'] },
+      { id: 11, title: 'Enterprise Sales Briefing', date: '9 December 2024', location: 'Bristol', image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&auto=format&fit=crop', description: 'C-suite decision makers received AI ROI financial modelling across three industries with a live walkthrough of the admin dashboard and client onboarding process.', tags: ['Sales', 'Enterprise', 'ROI'] },
+      { id: 12, title: 'Annual Gala 2024', date: '20 December 2024', location: 'London', image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&auto=format&fit=crop', description: '500 clients, partners, and team members celebrated AI-Solutions most successful year. Awards across 6 categories, live product showcase, and keynote presentation.', tags: ['Gala', 'Awards', 'Annual'] }
+    ];
+
+    // Aria System Prompt
+    const ARIA_SYSTEM_PROMPT = `You are Aria, the intelligent AI assistant for AI-Solutions, a UK-based artificial intelligence consultancy headquartered at 10 Innovation Quarter, Sunderland SR1 1AA, United Kingdom. Contact: info@ai-solutions.co.uk, +44 191 000 0000.
+
+You have complete knowledge of all nine AI-Solutions services and can answer detailed questions about each:
+1. AI Virtual Assistant (24/7 intelligent conversational support, CRM/ERP/helpdesk integration, trained on company-specific data)
+2. Rapid Prototyping (concept to working AI prototype in 5-10 days, ideal for proof-of-concept investment cases)
+3. Data Analytics (real-time dashboards, predictive modelling, anomaly detection, Power BI and Tableau compatible)
+4. Cloud Architecture (AWS, Azure, and GCP multi-cloud AI deployments, containerised ML inference, IaC with Terraform)
+5. Cybersecurity AI (ML-powered threat detection, network anomaly identification, automated incident triage, SIEM integration)
+6. Intelligent Automation (end-to-end workflow automation, RPA combined with AI decision-making, SAP/Salesforce/Microsoft 365 integration)
+7. NLP Solutions (intent classification, entity extraction, document intelligence, RAG architectures, 30+ languages)
+8. Predictive Analytics (demand forecasting, churn prediction, financial modelling, time-series analysis, explainable AI)
+9. Digital Transformation (full organisational AI adoption programmes, change management, staff training, governance frameworks)
+
+Pricing: AI Starter £499/month (up to 3 users, 1 service, email support), Professional £1,499/month (up to 25 users, 3 services, priority support), Enterprise £3,999/month (unlimited users, all 9 services, dedicated account manager, SLA), Custom (bespoke pricing).
+
+Demo booking: via the Contact page or email info@ai-solutions.co.uk. Events are listed on the Events page.
+
+Be professional, precise, warm, and thorough. Give detailed answers when technical questions are asked. If asked something completely outside your knowledge, offer to connect the user with a human consultant via the Contact page.`;
+
+    // Chat conversation history
+    let chatHistory = [];
+
+    // API Call Function
+    async function apiCall(method, path, body) {
+      try {
+        const res = await fetch(API + path, {
+          method,
+          headers: { 'Content-Type': 'application/json' },
+          body: body ? JSON.stringify(body) : undefined
+        });
+        if (!res.ok) throw new Error(await res.text());
+        state.isOnline = true;
+        updateConnectionStatus(true);
+        return await res.json();
+      } catch (err) {
+        console.warn('API unavailable, using local cache:', err.message);
+        state.isOnline = false;
+        updateConnectionStatus(false);
+        return null;
+      }
+    }
+
+    // Update connection status
+    function updateConnectionStatus(online) {
+      const statusEl = document.getElementById('connectionStatus');
+      const textEl = document.getElementById('connectionText');
+      if (statusEl) {
+        if (online) {
+          statusEl.className = 'connection-status connected';
+          textEl.textContent = 'MongoDB Connected';
+        } else {
+          statusEl.className = 'connection-status offline';
+          textEl.textContent = 'Local Cache Only';
+        }
+      }
+    }
+
+    // Load enquiries
+    async function loadEnquiries() {
+      const data = await apiCall('GET', '/enquiries');
+      if (data) {
+        state.enquiries = data;
+        localStorage.setItem('ai_enquiries', JSON.stringify(data));
+      } else {
+        const cached = localStorage.getItem('ai_enquiries');
+        if (cached) state.enquiries = JSON.parse(cached);
+      }
+    }
+
+    // Generate reference
+    function generateRef() {
+      const year = new Date().getFullYear();
+      const count = state.enquiries.length + 1;
+      return `AIS-${year}-${String(count).padStart(3, '0')}`;
+    }
+
+    // Navigation
+    function go(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(`page-${page}`).classList.add('active');
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      const activeLink = document.querySelector(`.nav-link[data-page="${page}"]`);
+      if (activeLink) activeLink.classList.add('active');
+      window.scrollTo(0, 0);
+      if (page === 'admin' && !state.adminLoggedIn) {
+        document.getElementById('adminLogin').classList.remove('hidden');
+        document.getElementById('adminDashboard').classList.add('hidden');
+      }
+      if (page === 'services') renderServicesFull();
+      if (page === 'events') renderEventsFull();
+      if (page === 'gallery') renderGallery();
+      if (page === 'enquiries' || page === 'reports' || page === 'events' || page === 'services' || page === 'database' || page === 'settings') {
+        if (state.adminLoggedIn) showAdminSection(state.currentAdminSection);
+      }
+    }
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
+    function closeMobileMenu() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('active');
+    }
+
+    // Header scroll
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+
+    // Animate stats
+    function animateStats() {
+      document.querySelectorAll('.stat-value[data-target]').forEach(el => {
+        const target = parseInt(el.dataset.target);
+        const duration = 2000;
+        const start = performance.now();
+        function update(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(target * eased) + (target >= 50 ? '+' : '%');
+          if (progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+      });
+    }
+
+    // Render services preview
+    function renderServicesPreview() {
+      const grid = document.getElementById('servicesGridHome');
+      grid.innerHTML = services.slice(0, 6).map(s => `
+        <div class="service-card" onclick="openServiceModal('${s.id}')">
+          <div class="service-icon" style="background: ${s.color};">
+            ${s.icon}
+          </div>
+          <h3>${s.title}</h3>
+          <p>${s.shortDesc}</p>
+          <span class="service-link">View Details <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      `).join('');
+    }
+
+    // Render services full
+    function renderServicesFull() {
+      const grid = document.getElementById('servicesGridFull');
+      if (!grid) return;
+      grid.innerHTML = services.map(s => `
+        <div class="service-card" onclick="openServiceModal('${s.id}')">
+          <div class="service-icon" style="background: ${s.color};">
+            ${s.icon}
+          </div>
+          <h3>${s.title}</h3>
+          <p>${s.shortDesc}</p>
+          <ul style="margin: 12px 0; font-size: 0.875rem; color: var(--text-muted);">
+            <li style="margin-bottom: 6px;">${s.features[0]}</li>
+            <li style="margin-bottom: 6px;">${s.features[1]}</li>
+            <li>${s.features[2]}</li>
+          </ul>
+          <div style="display: flex; justify-content: flex-end; align-items: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--grey-dark);">
+            <span class="service-link">View Full Details <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Open service modal
+    function openServiceModal(id) {
+      const s = services.find(s => s.id === id);
+      if (!s) return;
+      document.getElementById('modalIcon').style.background = s.color;
+      document.getElementById('modalIcon').innerHTML = s.icon;
+      document.getElementById('modalTitle').textContent = s.title;
+      document.getElementById('modalDescription').textContent = s.description;
+      document.getElementById('modalFeatures').innerHTML = s.features.map(f => `<li>${f}</li>`).join('');
+      document.getElementById('modalUseCaseIndustry').textContent = s.useCase.industry;
+      document.getElementById('modalUseCaseOutcome').textContent = s.useCase.outcome;
+      document.getElementById('modalTimeline').textContent = s.timeline;
+      const related = services.filter(x => x.id !== id).slice(0, 2);
+      document.getElementById('relatedServices').innerHTML = related.map(r => `
+        <div class="related-card" onclick="openServiceModal('${r.id}')">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div class="service-icon" style="background: ${r.color}; width: 40px; height: 40px;">${r.icon}</div>
+            <span style="font-weight: 600; color: var(--navy);">${r.title}</span>
+          </div>
+        </div>
+      `).join('');
+      document.getElementById('serviceModal').classList.add('active');
+    }
+
+    function closeServiceModal() {
+      document.getElementById('serviceModal').classList.remove('active');
+    }
+
+    // Render events preview
+    function renderEventsPreview() {
+      const scroll = document.getElementById('eventsPreview');
+      scroll.innerHTML = events.slice(0, 3).map(e => `
+        <div class="event-card">
+          <div class="event-date-badge">
+            <div class="day">${e.day}</div>
+            <div class="month">${e.month}</div>
+          </div>
+          <div class="event-card-content">
+            <span class="event-type-pill">${e.type}</span>
+            <h3>${e.title}</h3>
+            <div class="event-location">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              ${e.location}
+            </div>
+            <button class="btn btn-secondary btn-sm" style="width: 100%;" onclick="openEventModal(${e.id})">Register</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Render events full
+    function renderEventsFull() {
+      const grid = document.getElementById('eventsGridFull');
+      if (!grid) return;
+      grid.innerHTML = events.map(e => `
+        <div class="event-card">
+          <div class="event-date-badge">
+            <div class="day">${e.day}</div>
+            <div class="month">${e.month}</div>
+          </div>
+          <div class="event-card-content">
+            <span class="event-type-pill">${e.type}</span>
+            <h3>${e.title}</h3>
+            <div class="event-location">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              ${e.location}
+            </div>
+            <p style="font-size: 0.875rem; margin: 12px 0; color: var(--text-muted);">${e.description}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.875rem; color: var(--text-muted);">${e.registrations} registered</span>
+              <button class="btn btn-blue btn-sm" onclick="openEventModal(${e.id})">Register</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Event modal
+    let bookingRefCount = 1000;
+    function openEventModal(id) {
+      const e = events.find(e => e.id === id);
+      if (!e) return;
+      document.getElementById('eventModalContent').innerHTML = `
+        <h2>${e.title}</h2>
+        <div class="event-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${e.day} ${e.month} ${e.date.split('-')[0]}</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${e.location}</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>${e.type}</span>
+        </div>
+        <form class="event-form" id="eventForm${e.id}" onsubmit="submitEventRegistration(${e.id}, event)">
+          <input type="text" name="name" placeholder="Your full name" required>
+          <input type="email" name="email" placeholder="Your email address" required>
+          <input type="hidden" name="event" value="${e.title}">
+          <button type="submit" class="btn btn-blue" style="width: 100%;">Complete Registration</button>
+        </form>
+      `;
+      document.getElementById('eventModal').classList.add('active');
+    }
+
+    function closeEventModal() {
+      document.getElementById('eventModal').classList.remove('active');
+    }
+
+    async function submitEventRegistration(eventId, e) {
+      e.preventDefault();
+      const form = e.target;
+      const name = form.name.value;
+      const email = form.email.value;
+      const eventTitle = form.event.value;
+      bookingRefCount++;
+      const ref = `EVT-2025-${bookingRefCount}`;
+      document.getElementById('eventModalContent').innerHTML = `
+        <div class="booking-confirmation">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <h2 style="color: var(--navy);">Registration Complete!</h2>
+          <p class="booking-ref">${ref}</p>
+          <p style="color: var(--text-muted); margin-bottom: 24px;">Thank you for registering, ${name}!<br>We've sent confirmation details to ${email}.</p>
+          <button class="btn btn-secondary" onclick="closeEventModal()">Close</button>
+        </div>
+      `;
+    }
+
+    // Render gallery
+    function renderGallery() {
+      const grid = document.getElementById('galleryGrid');
+      if (!grid) return;
+      grid.innerHTML = gallery.map(g => `
+        <div class="gallery-item" onclick="openLightbox(${g.id})">
+          <img src="${g.image}" alt="${g.title}">
+          <div class="gallery-overlay">
+            <h3>${g.title}</h3>
+            <span>${g.date}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Lightbox
+    function openLightbox(id) {
+      const g = gallery.find(g => g.id === id);
+      if (!g) return;
+      document.getElementById('lightboxImage').src = g.image;
+      document.getElementById('lightboxTitle').textContent = g.title;
+      document.getElementById('lightboxDate').textContent = g.date;
+      document.getElementById('lightboxLocation').textContent = g.location;
+      document.getElementById('lightboxDescription').textContent = g.description;
+      document.getElementById('lightboxTags').innerHTML = g.tags.map(t => `<span class="lightbox-tag">${t}</span>`).join('');
+      document.getElementById('lightbox').classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    // Contact form
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      let valid = true;
+      const form = this;
+      form.querySelectorAll('.form-group').forEach(g => g.classList.remove('error'));
+      
+      form.querySelectorAll('[required]').forEach(field => {
+        if (!field.value.trim()) {
+          field.closest('.form-group').classList.add('error');
+          valid = false;
+        }
+      });
+      
+      const emailField = form.querySelector('[name="email"]');
+      if (emailField.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value)) {
+        emailField.closest('.form-group').classList.add('error');
+        valid = false;
+      }
+      
+      if (!valid) return;
+      
+      const data = {
+        ref: generateRef(),
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        company: form.company.value,
+        country: form.country.value,
+        jobtitle: form.jobtitle.value,
+        interest: form.interest.value,
+        details: form.details.value,
+        date: new Date().toISOString(),
+        status: 'New'
+      };
+      
+      const result = await apiCall('POST', '/enquiries', data);
+      if (result || !state.isOnline) {
+        if (result) state.enquiries.push(result);
+        localStorage.setItem('ai_enquiries', JSON.stringify(state.enquiries));
+        showReceipt(data);
+      } else {
+        alert('Failed to submit enquiry. Please try again.');
+      }
+    });
+
+    // Show receipt
+    function showReceipt(data) {
+      document.getElementById('receiptRef').textContent = data.ref;
+      document.getElementById('receiptDate').textContent = new Date().toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      document.getElementById('receiptDetails').innerHTML = `
+        <div class="receipt-detail"><label>Full Name</label><p>${data.name}</p></div>
+        <div class="receipt-detail"><label>Email</label><p>${data.email}</p></div>
+        <div class="receipt-detail"><label>Phone</label><p>${data.phone}</p></div>
+        <div class="receipt-detail"><label>Company</label><p>${data.company}</p></div>
+        <div class="receipt-detail"><label>Country</label><p>${data.country}</p></div>
+        <div class="receipt-detail"><label>Interest</label><p>${data.interest}</p></div>
+        ${data.jobtitle ? `<div class="receipt-detail"><label>Job Title</label><p>${data.jobtitle}</p></div>` : ''}
+        ${data.details ? `<div class="receipt-detail" style="grid-column: 1/-1;"><label>Details</label><p>${data.details}</p></div>` : ''}
+      `;
+      go('receipt');
+    }
+
+    // Tracker
+    async function trackEnquiry() {
+      const ref = document.getElementById('trackerInput').value.trim().toUpperCase();
+      if (!ref) return;
+      await loadEnquiries();
+      const enquiry = state.enquiries.find(e => e.ref === ref);
+      const result = document.getElementById('trackerResult');
+      if (enquiry) {
+        const steps = ['Enquiry Received', 'Initial Review', 'Assigned to Account Manager', 'Demo Scheduled', 'Proposal Delivered'];
+        const statusIndex = { 'New': 0, 'In Progress': 2, 'Pending': 3, 'Closed': 4 };
+        const currentStep = statusIndex[enquiry.status] || 0;
+        result.innerHTML = `
+          <div class="tracker-timeline">
+            ${steps.map((step, i) => `
+              <div class="timeline-step">
+                <div class="timeline-dot ${i < currentStep ? 'done' : i === currentStep ? 'current' : ''}"></div>
+                <div class="timeline-content">
+                  <h4>${step}</h4>
+                  <p>${i < currentStep ? 'Completed' : i === currentStep ? 'Current status: ' + enquiry.status : 'Pending'}</p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else {
+        result.innerHTML = `
+          <div class="tracker-not-found">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <h3>Enquiry Not Found</h3>
+            <p>Please check your reference number and try again.</p>
+          </div>
+        `;
+      }
+    }
+
+    // Admin login
+    function adminLogin(e) {
+      e.preventDefault();
+      const username = document.getElementById('adminUsername').value;
+      const password = document.getElementById('adminPassword').value;
+      if (username === 'admin' && password === 'admin123') {
+        state.adminLoggedIn = true;
+        document.getElementById('adminLogin').classList.add('hidden');
+        document.getElementById('adminDashboard').classList.remove('hidden');
+        document.getElementById('loginError').classList.remove('show');
+        loadAdminData();
+      } else {
+        document.getElementById('loginError').classList.add('show');
+      }
+    }
+
+    function adminLogout() {
+      state.adminLoggedIn = false;
+      document.getElementById('adminLogin').classList.remove('hidden');
+      document.getElementById('adminDashboard').classList.add('hidden');
+    }
+
+    async function loadAdminData() {
+      await loadEnquiries();
+      await checkHealth();
+      updateAdminDashboard();
+    }
+
+    async function checkHealth() {
+      const result = await apiCall('GET', '/health');
+      if (result) {
+        updateConnectionStatus(true);
+      } else {
+        updateConnectionStatus(false);
+      }
+    }
+
+    function updateAdminDashboard() {
+      const enqs = state.enquiries;
+      const total    = enqs.length;
+      const demos    = enqs.filter(e => e.interest === 'Schedule a Personalised Demo').length;
+      const eventSU  = enqs.filter(e => e.interest === 'Join an Event').length;
+      const open     = enqs.filter(e => e.status !== 'Closed').length;
+      const closed   = enqs.filter(e => e.status === 'Closed').length;
+      const convRate = total > 0 ? Math.round((closed / total) * 100) : 0;
+
+      // Last updated
+      document.getElementById('dashLastUpdated').textContent =
+        'Last updated: ' + new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+
+      // ── KPI cards ──────────────────────────────────────────
+      const kpis = [
+        { label: 'Total Enquiries', value: total,     icon: '📬', color: 'blue',  change: '+12% vs last month', dir: 'up' },
+        { label: 'Demo Requests',   value: demos,     icon: '🎯', color: 'teal',  change: '+8% vs last month',  dir: 'up' },
+        { label: 'Event Sign-ups',  value: eventSU,   icon: '📅', color: 'navy',  change: 'Stable',             dir: 'flat' },
+        { label: 'Open',            value: open,      icon: '🟡', color: 'green', change: `${total ? Math.round((open/total)*100) : 0}% of total`, dir: 'flat' },
+        { label: 'Closed / Won',    value: closed,    icon: '✅', color: 'red',   change: `${convRate}% close rate`, dir: closed > 0 ? 'up' : 'flat' },
+      ];
+      document.getElementById('adminKpis').innerHTML = kpis.map(k => `
+        <div class="kpi-card ${k.color}">
+          <div class="kpi-top">
+            <div class="kpi-label">${k.label}</div>
+            <div class="kpi-icon">${k.icon}</div>
+          </div>
+          <div class="kpi-value">${k.value}</div>
+          <div class="kpi-change ${k.dir}">${k.dir === 'up' ? '↑' : k.dir === 'down' ? '↓' : '→'} ${k.change}</div>
+        </div>
+      `).join('');
+
+      // ── Monthly bar chart ───────────────────────────────────
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const now = new Date();
+      const monthlyData = months.map((_, i) =>
+        enqs.filter(e => new Date(e.createdAt || e.date).getMonth() === i).length);
+      const maxM = Math.max(...monthlyData, 1);
+      // Trend label
+      const thisM = monthlyData[now.getMonth()];
+      const prevM = monthlyData[(now.getMonth() + 11) % 12];
+      const trendTxt = prevM === 0 ? 'No prior data' :
+        thisM > prevM ? `↑ ${thisM - prevM} more than last month` :
+        thisM < prevM ? `↓ ${prevM - thisM} fewer than last month` : 'Same as last month';
+      document.getElementById('monthlyTrendLabel').textContent = trendTxt;
+      document.getElementById('barChart').innerHTML = months.map((m, i) => {
+        const pct = Math.max((monthlyData[i] / maxM) * 100, 2);
+        const isNow = i === now.getMonth();
+        return `<div class="bar" style="height:${pct}%; background:${isNow ? 'var(--teal)' : 'var(--blue)'};" data-value="${monthlyData[i]}"><span>${m}</span></div>`;
+      }).join('');
+
+      // ── Donut: by status ────────────────────────────────────
+      const statusDef = [
+        { label: 'New',         color: '#185FA5', key: 'New' },
+        { label: 'In Progress', color: '#1D9E75', key: 'In Progress' },
+        { label: 'Pending',     color: '#f59e0b', key: 'Pending' },
+        { label: 'Closed',      color: '#6b7280', key: 'Closed' },
+      ];
+      const statusCounts = statusDef.map(s => ({ ...s, n: enqs.filter(e => e.status === s.key).length }));
+      const donutR = 50, cx = 60, cy = 60, stroke = 18;
+      const circum = 2 * Math.PI * donutR;
+      let offset = 0;
+      const paths = statusCounts.map(s => {
+        const frac = total > 0 ? s.n / total : 0;
+        const dash = frac * circum;
+        const el = `<circle cx="${cx}" cy="${cy}" r="${donutR}" fill="none" stroke="${s.color}" stroke-width="${stroke}"
+          stroke-dasharray="${dash} ${circum - dash}" stroke-dashoffset="${-offset}" transform="rotate(-90 ${cx} ${cy})" />`;
+        offset += dash;
+        return el;
+      }).join('');
+      document.getElementById('donutSvg').innerHTML =
+        `<circle cx="${cx}" cy="${cy}" r="${donutR}" fill="none" stroke="var(--grey-dark)" stroke-width="${stroke}"/>${paths}`;
+      document.getElementById('donutCenter').innerHTML =
+        `<div class="donut-center-val">${total}</div><div class="donut-center-lbl">Total</div>`;
+      document.getElementById('donutLegend').innerHTML = statusCounts.map(s => `
+        <div class="pie-legend-item">
+          <div class="pie-legend-color" style="background:${s.color}"></div>${s.label} (${s.n})
+        </div>`).join('');
+
+      // ── Activity feed ───────────────────────────────────────
+      const recent10 = [...enqs]
+        .sort((a, b) => new Date(b.createdAt || b.date) - new Date(a.createdAt || a.date))
+        .slice(0, 8);
+      const dotColor = s => s === 'New' ? '#185FA5' : s === 'In Progress' ? '#1D9E75' : s === 'Closed' ? '#6b7280' : '#f59e0b';
+      document.getElementById('activityFeed').innerHTML = recent10.length ? recent10.map(e => `
+        <div class="activity-item">
+          <div class="activity-dot" style="background:${dotColor(e.status)}"></div>
+          <div>
+            <div class="activity-text"><strong>${e.name || 'Unknown'}</strong> from ${e.company || '—'}</div>
+            <div class="activity-text" style="color:var(--text-muted)">${e.interest || 'General Enquiry'}</div>
+            <div class="activity-time">${new Date(e.createdAt || e.date).toLocaleDateString('en-GB', {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</div>
+          </div>
+        </div>`).join('') : '<p style="color:var(--text-muted);font-size:0.875rem;padding:12px 0;">No activity yet.</p>';
+
+      // ── Service interest bars ───────────────────────────────
+      const svcColors = ['#185FA5','#1D9E75','#639922','#042C53','#dc2626','#7c3aed','#0891b2','#ea580c','#4f46e5'];
+      const interests = {};
+      enqs.forEach(e => { if (e.interest) interests[e.interest] = (interests[e.interest] || 0) + 1; });
+      const sortedSvc = Object.entries(interests).sort((a, b) => b[1] - a[1]).slice(0, 7);
+      const maxSvc = sortedSvc[0]?.[1] || 1;
+      document.getElementById('serviceInterestBars').innerHTML = sortedSvc.length ? sortedSvc.map(([k, v], i) => `
+        <div class="svc-bar-row">
+          <div class="svc-bar-meta">
+            <span class="svc-bar-name">${k}</span>
+            <span class="svc-bar-count">${v}</span>
+          </div>
+          <div class="svc-bar-track">
+            <div class="svc-bar-fill" style="width:${(v/maxSvc)*100}%;background:${svcColors[i % svcColors.length]}"></div>
+          </div>
+        </div>`).join('') : '<p style="color:var(--text-muted);font-size:0.875rem;">No data yet.</p>';
+
+      // ── Country bars ────────────────────────────────────────
+      const countries = {};
+      enqs.forEach(e => { if (e.country) countries[e.country] = (countries[e.country] || 0) + 1; });
+      const sortedC = Object.entries(countries).sort((a, b) => b[1] - a[1]).slice(0, 7);
+      const maxC = sortedC[0]?.[1] || 1;
+      document.getElementById('countryBars').innerHTML = sortedC.length ? sortedC.map(([c, n]) => `
+        <div class="country-bar">
+          <span class="country-bar-name">${c}</span>
+          <div class="country-bar-track"><div class="country-bar-fill" style="width:${(n/maxC)*100}%"></div></div>
+          <span class="country-bar-n">${n}</span>
+        </div>`).join('') : '<p style="color:var(--text-muted);font-size:0.875rem;">No data yet.</p>';
+
+      // ── Recent enquiries table ──────────────────────────────
+      const recentRows = [...enqs]
+        .sort((a, b) => new Date(b.createdAt || b.date) - new Date(a.createdAt || a.date))
+        .slice(0, 6);
+      document.querySelector('#recentEnquiriesTable tbody').innerHTML = recentRows.length
+        ? recentRows.map(e => `
+          <tr>
+            <td style="font-family:monospace;font-size:0.8rem;">${e.ref}</td>
+            <td>${e.name}</td>
+            <td>${e.company}</td>
+            <td style="font-size:0.8125rem;">${e.interest}</td>
+            <td><span class="status-badge ${(e.status||'new').toLowerCase().replace(' ','-')}">${e.status}</span></td>
+            <td style="font-size:0.8125rem;color:var(--text-muted)">${new Date(e.createdAt || e.date).toLocaleDateString('en-GB')}</td>
+          </tr>`).join('')
+        : '<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:24px;">No enquiries yet</td></tr>';
+
+      // ── Upcoming events mini list ───────────────────────────
+      const upcoming = events.filter(e => new Date(e.date) >= new Date()).slice(0, 5);
+      document.getElementById('upcomingEventsList').innerHTML = upcoming.length ? upcoming.map(e => `
+        <div class="event-mini">
+          <div class="event-mini-badge">
+            <div class="event-mini-day">${e.day}</div>
+            <div class="event-mini-month">${e.month}</div>
+          </div>
+          <div>
+            <div class="event-mini-pill">${e.type}</div>
+            <div class="event-mini-title">${e.title}</div>
+            <div class="event-mini-loc">📍 ${e.location} · ${e.registrations} registered</div>
+          </div>
+        </div>`).join('') : '<p style="color:var(--text-muted);font-size:0.875rem;">No upcoming events.</p>';
+
+      // ── Other sections ──────────────────────────────────────
+      updateEnquiriesTable();
+
+      document.querySelector('#adminEventsTable tbody').innerHTML = events.map(e => {
+        const past = new Date(e.date) < new Date();
+        return `<tr><td>${e.title}</td><td>${e.date}</td><td>${e.location}</td><td><span class="event-type-pill">${e.type}</span></td><td>${e.registrations}</td><td><span class="status-badge ${past ? 'closed' : 'new'}">${past ? 'Past' : 'Upcoming'}</span></td></tr>`;
+      }).join('');
+
+      document.querySelector('#adminServicesTable tbody').innerHTML = services.map(s => {
+        const count = enqs.filter(e => e.interest === s.title).length;
+        return `<tr><td>${s.title}</td><td>${s.timeline}</td><td>${count}</td><td><span class="status-badge new">Active</span></td></tr>`;
+      }).join('');
+    }
+
+    function updateEnquiriesTable() {
+      const filter = document.getElementById('statusFilter')?.value || '';
+      const filtered = filter ? state.enquiries.filter(e => e.status === filter) : state.enquiries;
+      document.getElementById('enquiryCount').textContent = `${filtered.length} enquiries`;
+      document.querySelector('#enquiriesTable tbody').innerHTML = filtered.map(e => `
+        <tr>
+          <td>${e.ref}</td>
+          <td>${e.name}</td>
+          <td>${e.company}</td>
+          <td>${e.country}</td>
+          <td>${e.interest}</td>
+          <td>${new Date(e.createdAt || e.date).toLocaleDateString()}</td>
+          <td><span class="status-badge ${e.status.toLowerCase().replace(' ', '-')}">${e.status}</span></td>
+          <td>
+            <select class="status-select" onchange="updateStatus('${e.ref}', this.value)">
+              <option value="New" ${e.status === 'New' ? 'selected' : ''}>New</option>
+              <option value="In Progress" ${e.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
+              <option value="Pending" ${e.status === 'Pending' ? 'selected' : ''}>Pending</option>
+              <option value="Closed" ${e.status === 'Closed' ? 'selected' : ''}>Closed</option>
+            </select>
+          </td>
+        </tr>
+      `).join('') || '<tr><td colspan="8" style="text-align: center; color: var(--text-muted);">No enquiries found</td></tr>';
+    }
+
+    function filterEnquiries() {
+      updateEnquiriesTable();
+    }
+
+   async function updateStatus(ref, status) {
+      const enquiry = state.enquiries.find(e => e.ref === ref);
+      if (enquiry && enquiry._id) {
+        await apiCall('PATCH', `/enquiries/${enquiry._id}/status`, { status });
+      }
+      const enq = state.enquiries.find(e => e.ref === ref);
+      if (enq) enq.status = status;
+      localStorage.setItem('ai_enquiries', JSON.stringify(state.enquiries));
+      updateAdminDashboard();
+    }
+
+    function showAdminSection(section) {
+      state.currentAdminSection = section;
+      document.querySelectorAll('.admin-main > div').forEach(d => d.classList.add('hidden'));
+      const el = document.getElementById(`admin-${section}`);
+      if (el) el.classList.remove('hidden');
+      document.querySelectorAll('.admin-nav-item').forEach(n => n.classList.remove('active'));
+      const navEl = document.querySelector(`.admin-nav-item[data-section="${section}"]`);
+      if (navEl) navEl.classList.add('active');
+      // Only refresh data for data sections
+      if (['dashboard','enquiries','events','services'].includes(section) && state.adminLoggedIn) {
+        updateAdminDashboard();
+      }
+    }
+
+
+    async function sendAdminEmail(){
+      const data={
+        to:document.getElementById("emailTo").value,
+        subject:document.getElementById("emailSubject").value,
+        message:document.getElementById("emailMessage").value
+      };
+      try{
+        const r=await fetch("http://localhost:3000/api/email/send",{
+          method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)
+        });
+        const res=await r.json();
+        alert(r.ok?"Email sent":("Email failed: "+(res.details||res.error||"Unknown error")));
+      }catch(e){
+        alert("Email failed: "+e.message);
+      }
+    }
+
+    function exportJson() {
+      const blob = new Blob([JSON.stringify(state.enquiries, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `enquiries-${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+    }
+
+    function exportCsv() {
+      const headers = ['Ref', 'Name', 'Email', 'Phone', 'Company', 'Country', 'Job Title', 'Interest', 'Details', 'Status', 'Date'];
+      const rows = state.enquiries.map(e => [e.ref, e.name, e.email, e.phone, e.company, e.country, e.jobtitle || '', e.interest, e.details || '', e.status, new Date(e.createdAt || e.date).toLocaleDateString()]);
+      const csv = [headers.join(','), ...rows.map(r => r.map(c => `"${(c || '').toString().replace(/"/g, '""')}"`).join(','))].join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `enquiries-${new Date().toISOString().split('T')[0]}.csv`;
+      a.click();
+    }
+
+    // Demo form
+    document.getElementById('demoForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      let valid = true;
+      const form = this;
+      form.querySelectorAll('.form-group').forEach(g => g.classList.remove('error'));
+      form.querySelectorAll('[required]').forEach(field => {
+        if (!field.value.trim()) { field.closest('.form-group').classList.add('error'); valid = false; }
+      });
+      const emailField = form.querySelector('[name="email"]');
+      if (emailField.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value)) {
+        emailField.closest('.form-group').classList.add('error'); valid = false;
+      }
+      if (!valid) return;
+      const data = {
+        ref: generateRef(),
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        company: form.company.value,
+        country: form.country.value,
+        jobtitle: form.jobtitle.value,
+        interest: 'Schedule a Personalised Demo',
+        details: form.details.value,
+        date: new Date().toISOString(),
+        status: 'New'
+      };
+      const result = await apiCall('POST', '/enquiries', data);
+      if (result || !state.isOnline) {
+        if (result) state.enquiries.push(result);
+        localStorage.setItem('ai_enquiries', JSON.stringify(state.enquiries));
+        showReceipt(data);
+      } else {
+        alert('Failed to submit. Please try again.');
+      }
+    });
+
+    // CMS save
+    function saveCms() {
+      const cms = {
+        heroTitle: document.getElementById('cmsHeroTitle').value,
+        heroSubtitle: document.getElementById('cmsHeroSubtitle').value,
+        ctaText: document.getElementById('cmsCtaText').value,
+        contactEmail: document.getElementById('cmsEmail').value,
+        contactPhone: document.getElementById('cmsPhone').value,
+        contactAddress: document.getElementById('cmsAddress').value,
+        footerTagline: document.getElementById('cmsFooterTagline').value,
+      };
+      localStorage.setItem('ai_cms', JSON.stringify(cms));
+      const msg = document.getElementById('cmsSaveMsg');
+      msg.style.display = 'inline';
+      setTimeout(() => { msg.style.display = 'none'; }, 2500);
+    }
+
+    // Settings save
+    function saveSettings() {
+      const settings = {
+        siteName: document.getElementById('settSiteName').value,
+        timezone: document.getElementById('settTimezone').value,
+        defaultStatus: document.getElementById('settDefaultStatus').value,
+        maintenance: document.getElementById('settMaintenance').checked,
+        registrations: document.getElementById('settRegistrations').checked,
+        emails: document.getElementById('settEmails').checked,
+      };
+      localStorage.setItem('ai_settings', JSON.stringify(settings));
+      const msg = document.getElementById('settSaveMsg');
+      msg.style.display = 'inline';
+      setTimeout(() => { msg.style.display = 'none'; }, 2500);
+    }
+
+    // ── Feedback Section ──
+    let selectedRating = 0;
+    function setRating(val) {
+      selectedRating = val;
+      document.querySelectorAll('.star-btn').forEach((btn, i) => {
+        btn.classList.toggle('selected', i < val);
+      });
+    }
+    function submitFeedback() {
+      const name = document.getElementById('feedbackName').value.trim();
+      const msg  = document.getElementById('feedbackMsg').value.trim();
+      if (!selectedRating) { alert('Please select a star rating before submitting.'); return; }
+      if (!msg) { alert('Please share a brief comment before submitting.'); return; }
+      // Save to localStorage for demo purposes
+      const entry = { name: name || 'Anonymous', rating: selectedRating, message: msg, date: new Date().toISOString() };
+      const existing = JSON.parse(localStorage.getItem('ai_feedback') || '[]');
+      existing.push(entry);
+      localStorage.setItem('ai_feedback', JSON.stringify(existing));
+      document.getElementById('feedbackFormWrap').style.display = 'none';
+      document.getElementById('feedbackSuccess').style.display = 'block';
+    }
+
+    // ── Newsletter ──
+    function subscribeNewsletter() {
+      const emailEl = document.getElementById('newsletterEmail');
+      const email = emailEl.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        emailEl.style.borderColor = '#dc2626';
+        emailEl.focus();
+        return;
+      }
+      emailEl.style.borderColor = '';
+      const subs = JSON.parse(localStorage.getItem('ai_subscribers') || '[]');
+      if (!subs.includes(email)) { subs.push(email); localStorage.setItem('ai_subscribers', JSON.stringify(subs)); }
+      emailEl.value = '';
+      const msg = document.getElementById('newsletterSuccess');
+      msg.style.display = 'block';
+      setTimeout(() => { msg.style.display = 'none'; }, 5000);
+    }
+
+    // Allow Enter key in newsletter input
+    document.addEventListener('DOMContentLoaded', () => {
+      const ni = document.getElementById('newsletterEmail');
+      if (ni) ni.addEventListener('keydown', e => { if (e.key === 'Enter') subscribeNewsletter(); });
+    });
+
+    // Chatbot
+    function toggleChatbot() {
+      document.getElementById('chatbotWindow').classList.toggle('active');
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const message = input.value.trim();
+      if (!message) return;
+      
+      const messagesEl = document.getElementById('chatMessages');
+      messagesEl.innerHTML += `<div class="chat-message user">${message}</div>`;
+      input.value = '';
+      
+      // Show typing indicator
+      messagesEl.innerHTML += `<div class="typing-indicator" id="typingIndicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+      
+      chatHistory.push({ role: 'user', content: message });
+      
+      try {
+        const response = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': 'sk-ant-api03-placeholder', // Placeholder - users need to add their key
+            'anthropic-version': '2023-06-01'
+          },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-6',
+            max_tokens: 1000,
+            system: ARIA_SYSTEM_PROMPT,
+            messages: chatHistory
+          })
+        });
+        
+        document.getElementById('typingIndicator')?.remove();
+        
+        if (response.ok) {
+          const data = await response.json();
+          const botMessage = data.content[0].text;
+          chatHistory.push({ role: 'assistant', content: botMessage });
+          messagesEl.innerHTML += `<div class="chat-message bot">${botMessage}</div>`;
+        } else {
+          throw new Error('API error');
+        }
+      } catch (err) {
+        document.getElementById('typingIndicator')?.remove();
+        // Fallback responses
+        const fallback = getFallbackResponse(message);
+        messagesEl.innerHTML += `<div class="chat-message bot">${fallback}</div>`;
+      }
+      
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function getFallbackResponse(message) {
+      const msg = message.toLowerCase();
+      if (msg.includes('price') || msg.includes('cost') || msg.includes('pricing')) {
+        return 'Our AI programmes start at £499/month for the Starter tier, £1,499/month for Professional, and £3,999/month for Enterprise. Custom pricing is available for large organisations. Would you like to schedule a call to discuss your specific requirements?';
+      }
+      if (msg.includes('service') || msg.includes('what do you')) {
+        return 'AI-Solutions offers nine core services: AI Virtual Assistant, Rapid Prototyping, Data Analytics, Cloud Architecture, Cybersecurity AI, Intelligent Automation, NLP Solutions, Predictive Analytics, and Digital Transformation. Which one would you like to learn more about?';
+      }
+      if (msg.includes('contact') || msg.includes('speak to someone')) {
+        return 'You can reach us at info@ai-solutions.co.uk or call +44 191 000 0000. Alternatively, you can fill out the contact form on our website and we will get back to you within 24 hours.';
+      }
+      if (msg.includes('demo')) {
+        return 'I would be happy to arrange a personalised demo for you. Please visit our Contact page to submit an enquiry, or email info@ai-solutions.co.uk with your preferred dates and times.';
+      }
+      if (msg.includes('event') || msg.includes('workshop')) {
+        return 'We have several upcoming events including the AI Innovation Summit 2025 on 15 March in London, and the Rapid Prototyping Bootcamp on 2 April in Sunderland. Visit our Events page for the full schedule and registration.';
+      }
+      return 'Thank you for your message. For detailed assistance with your AI requirements, I recommend visiting our Services page or contacting our team directly. You can also explore our Events page for upcoming workshops and conferences.';
+    }
+
+    // PWA Install
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (location.protocol === 'https:' || location.hostname === 'localhost') {
+        setTimeout(() => document.getElementById('installBanner').classList.add('show'), 3000);
+      }
+    });
+
+    function installPWA() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => {
+          document.getElementById('installBanner').classList.remove('show');
+          deferredPrompt = null;
+        });
+      }
+    }
+
+    function dismissInstall() {
+      document.getElementById('installBanner').classList.remove('show');
+    }
+
+    // Register service worker
+    if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+      navigator.serviceWorker.register('sw.js').then(reg => console.log('SW registered')).catch(err => console.log('SW registration failed'));
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', async () => {
+      renderServicesPreview();
+      renderEventsPreview();
+      animateStats();
+      await loadEnquiries();
+    });
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a10ba5e2ad3f1eed',t:'MTc4MjMwMzIyMg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+
+<script>
+// AI-Solutions contact/chatbot data hook
+// Connect this endpoint with your backend API to save directly to database
+async function saveChatbotContact(data){
+  return fetch('/api/enquiries',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...data,source:'chatbot',sender:'aisolution@gmail.com'})});
+}
+async function sendFeedbackEmail(data){
+  return fetch('/api/feedback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+}
+</script>
+</body>
+</html>
